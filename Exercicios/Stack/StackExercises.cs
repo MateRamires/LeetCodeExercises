@@ -74,13 +74,13 @@ public class StackExercises
 
         for (int i = 0; i < temperatures.Length; i++)
         {
-            int t = temperatures[i];
-            while (stack.Count > 0 && t > stack.Peek()[0])
+            int temp = temperatures[i];
+            while (stack.Count > 0 && temp > stack.Peek()[0]) //Se houver algum dado na stack E a temperatura atual for maior que a temperatura da stack (temperatura antiga)
             {
                 int[] pair = stack.Pop();
-                res[pair[1]] = i - pair[1];
+                res[pair[1]] = i - pair[1]; //Do par vindo do stack, o segundo elemento eh a posicao do elemento original, e o i - pair[i) sera a distancia entre o dia original e o dia que estava mais calor.
             }
-            stack.Push(new int[] { t, i });
+            stack.Push(new int[] { temp, i });
         }
         return res;
     }
