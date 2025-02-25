@@ -91,6 +91,8 @@ stackExercises.IsValid("(");
 //Ex 150
 stackExercises.EvalRPN(["2", "1", "+", "3", "*"]);
 
+//Ex 739
+stackExercises.DailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]);
 
 
 //Sliding Window
@@ -104,9 +106,6 @@ slidingWidowExercises.LengthOfLongestSubstring("abcabcbb");
 
 //Ex 424
 slidingWidowExercises.CharacterReplacement("AABABBA", 2);
-
-//Ex 567
-//slidingWidowExercises.CheckInclusion();
 
 
 
