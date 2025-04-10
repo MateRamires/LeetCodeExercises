@@ -27,4 +27,54 @@ public class BinarySearchExercises
         }
         return -1;
     }
+
+    //Ex 74
+    public bool SearchMatrix(int[][] matrix, int target)
+    {
+        int rows = matrix.Length;
+        int cols = matrix[0].Length;
+
+        int top = 0, bot = rows - 1;
+        int row = 0;
+        while (top <= bot) 
+        {
+            row = (top + bot) / 2; //Vamos fazer um binary search nos arrays da matriz
+            if (target > matrix[row][cols - 1])
+            {
+                top = row + 1;
+            }
+            else if (target < matrix[row][0])
+            {
+                bot = row - 1;
+            }
+            else 
+            {
+                break;
+            }
+        }
+
+        if (!(top <= bot)) //se cair nesse cenario, quer dizer que nenhuma linha contem o valor target, sendo assim, ja podemos retornar false.
+        {
+            return false;
+        }
+
+        int leftP = 0, rightP = cols - 1;
+        while (leftP <= rightP) 
+        { 
+            int middle = leftP + ((rightP - leftP) / 2);
+            if (target > matrix[row][middle])
+            {
+                leftP = middle + 1;
+            }
+            else if (target < matrix[row][middle])
+            {
+                rightP = middle - 1;
+            }
+            else 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
