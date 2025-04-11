@@ -77,4 +77,33 @@ public class BinarySearchExercises
         }
         return false;
     }
+
+    //Ex 875
+    public int MinEatingSpeed(int[] piles, int h)
+    {
+        int leftP = 1, rightP = piles.Max(); //Nosso binary search sera feito nesse range, de 1 (leftP) ate o maior valor do array piles (rightP)
+        int result = rightP; 
+
+        while (leftP <= rightP) 
+        {
+            int k = leftP + ((rightP - leftP) / 2);
+
+            long totalTime = 0;
+            foreach (int pile in piles) 
+            {
+                totalTime += (int)Math.Ceiling((double)pile / k);
+            }
+
+            if (totalTime <= h)
+            {
+                result = k;
+                rightP = k - 1;
+            }
+            else 
+            {
+                leftP = k + 1;
+            }
+        }
+        return result;
+    }
 }
