@@ -97,11 +97,11 @@ public class BinarySearchExercises
             if (totalTime <= h)
             {
                 result = k;
-                rightP = k - 1;
+                rightP = k - 1; //Vamos procurar por uma taxa de bananas comidas por hora menor, ou seja, movemos o ponteiro direito, ja que queremos a menor taxa.
             }
             else 
             {
-                leftP = k + 1;
+                leftP = k + 1; //Nesse caso vamos mover o ponteiro esquerdo, pois a taxa de bananas comidas por hora não foi o suficiente para Koko comer todas, e temos que buscar por taxas maiores.
             }
         }
         return result;
