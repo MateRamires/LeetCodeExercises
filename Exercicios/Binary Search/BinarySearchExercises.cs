@@ -106,4 +106,28 @@ public class BinarySearchExercises
         }
         return result;
     }
+
+    //Ex 153
+    public int FindMin(int[] nums)
+    {
+        int leftP = 0, rightP = nums.Length - 1;
+        int result = nums[0];
+
+        while (leftP <= rightP) 
+        {
+            if (nums[leftP] < nums[rightP]) //Caso o ponteiro esquerdo seja menor que o ponteiro direito, isso quer dizer que ja estamos na porcao do array onde ele esta ordenado, sendo assim, o menor valor sempre sera o primeiro, ou seja, o ponteiro esquerdo, nao precisamos mais fazer binary search.
+            {
+                result = Math.Min(result, nums[leftP]);
+                break;
+            }
+
+            int m = leftP + ((rightP - leftP) / 2);
+            result = Math.Min(result, nums[m]);
+            if (nums[m] >= nums[leftP]) //nos colocamos maior ou IGUAL pois o nosso "m" pode estar justamente em cima do ponteiro esquerdo, eh um edge-case.
+                leftP = m + 1;
+            else 
+                rightP = m - 1;
+        }
+        return result;
+    }
 }
