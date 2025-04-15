@@ -130,4 +130,35 @@ public class BinarySearchExercises
         }
         return result;
     }
+
+    //Ex 33
+    public int Search2(int[] nums, int target)
+    {
+        int leftP = 0, rightP = nums.Length - 1;
+
+        while (leftP <= rightP) 
+        {
+            int mid = leftP + ((rightP - leftP) / 2);
+            if (target == nums[mid])
+                return mid;
+
+            //Left Sorted Portion (Se o menor numero da porcao esquerda (leftPointer) for menor que o meio, entao estamos na porcao ordenada esquerda
+            if (nums[leftP] <= nums[mid])
+            {
+                if (target > nums[mid] || target < nums[leftP]) //Se o alvo for maior que o meio OU o target for ainda menor que o menor numero da porcao esquerda, nos devemos buscar nosso alvo na porcao direita, removendo completamente todos os numeros da porcao esquerda.
+                    leftP = mid + 1;
+                else //Se o alvo for menor que o meio, porem, for maior ou igual ao ponteiro esquerdo, isso quer dizer que o alvo esta na porcao esquerda, seja entre o ponteiro esquerdo e o meio, ou o proprio ponteiro esquerdo, mas sabemos que ele nao esta na porcao direita.
+                    rightP = mid - 1;
+
+            }
+            else //Right Sorted Portion (Se o menor numero da porcao da esquerda for maior que o meio, entao estamos na porcao ordenada da direita)
+            {
+                if(target < nums[mid] || target > nums[rightP]) //Se o alvo for menor que o meio OU o alvo for maior que o ultimo numero da porcao direita (o maior numero da porcao direita), entao o alvo nao esta na porcao direita, sendo assim, movemos o ponteiro e faremos a busca na porcao esquerda.
+                    rightP = mid - 1;
+                else
+                    leftP = mid + 1; //Se o alvo for MAIOR que o meio e MENOR que o maior numero da porcao direita (RightPointer), entao nosso alvo esta definitivamente na porcao direita, ou nao existe, entao excluimos todos os numeros da porcao esquerda.
+            }
+        }
+        return -1; //Se sair do while e nao encontrar o valor, entao o valor nao existe no array.
+    }
 }
