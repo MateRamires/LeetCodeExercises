@@ -70,10 +70,4 @@ public class SlidingWindowExercises
         }
         return res;
     }
-
-    //Ex 567
-    public bool CheckInclusion(string s1, string s2)
-    {
-
-    }
 }

@@ -114,4 +114,12 @@ slidingWidowExercises.CharacterReplacement("AABABBA", 2);
 //Linked List
 LinkedListExercises linkedListExercises = new LinkedListExercises();
 
-//Ex 206
+
+
+
+//Linked List Basic
+LinkedListBasic linkedListBasic = new LinkedListBasic();
+
+linkedListBasic.MontarLista();
+
+
