@@ -17,4 +17,33 @@ public class LinkedListExercises
         }
         return prev; //Retornamos o prev, pois o exercicio quer que retornemos o novo "Head" da linked list, e o novo head sera o ponteiro previous, pois o current, no final do processo, sera Null, que eh a nossa condicao do while.
     }
+
+    //Ex 21
+    public ListNode MergeTwoLists(ListNode list1, ListNode list2)
+    {
+        ListNode dummy = new ListNode(0); //Inicializamos a nossa linked list com um valor dummy, que nao serve para nada alem de apenas iniciar a linked list.
+        ListNode node = dummy;
+
+        while (list1 != null && list2 != null) //O while so rodara enquanto as 2 listas forem diferentes que null, pois se uma delas for nula, nao poderemos comparar os valores entre as 2, ja que uma delas nao tem nada.
+        {
+            if (list1.val < list2.val) //Nos iremos checar se o valor atual da lista1 eh menor que o valor atual da lista2, se for, nos inserimos o valor da lista1 na nossa nova linked list e movemos para o next da lista1, e continuaremos fazendo essas comparacoes ate uma das duas lista nao ter mais nada e ai saira do while.
+            {
+                node.next = list1;
+                list1 = list1.next; //Depois de colocar o node atual da lista1 na nossa linked list que sera o resultado, nos movemos para o proximo node da lista1.
+            }
+            else 
+            {
+                node.next = list2;
+                list2 = list2.next; //Exatamente o mesmo processo, mas para a lista2, quando acontecer de o valor da lista2 for menor que o da lista1.
+            }
+            node = node.next; //Movemos a o ponteiro para a ultima posicao da nossa lista, a que acabamos de adicionar.
+        }
+
+        if (list1 != null) //Por fim, checamos quais das 2 listas ainda tem valores restantes (nodes restantes) e inserimos esse node + todo o resto para dentro da nossa linked list.
+            node.next = list1; //Caso a lista2 tenha acabado os valores, adicionamos na nossa linked list merge todos os valores que restam da lista1, no caso, precisamos adicionar apenas o proximo valor da lista1, pois o resto dos valores ja estarao nos nexts.
+        else
+            node.next = list2;
+
+        return dummy.next; //Retornamos o valor apos o dummy, pois o dummy eh usado so para inicializar nossa linked list.
+    }
 }
