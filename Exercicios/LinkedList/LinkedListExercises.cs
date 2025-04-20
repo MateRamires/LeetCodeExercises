@@ -46,4 +46,19 @@ public class LinkedListExercises
 
         return dummy.next; //Retornamos o valor apos o dummy, pois o dummy eh usado so para inicializar nossa linked list.
     }
+
+    //Ex 141
+    public bool HasCycle(ListNode head)
+    {
+        ListNode slow = head, fast = head;
+
+        while (fast != null && fast.next != null) //Temos que garantir que o fast nao eh atualmente nulo, que eles nao esta exatamente no fim da lista, e temos que garantir que o proximo elemento tambem nao seja nulo, pois o fast se move 2 casas por vez, se o next for null, entao o fast vai se mover mais casas do que ha, e dara uma exception.
+        {
+            fast = fast.next.next; //Fast vai se mover 2 casas para frente, ou seja o proximo do proximo.
+            slow = slow.next; //Slow se movera apenas 1 casa.
+            if (slow.Equals(fast)) return true; //Caso o node slow seja exatamente igual ao node fast em um determinado momento do loop, isso quer dizer que ha um ciclo e retornaremos true.
+        }
+
+        return false; //Caso nossas condicoes sejam ativas no while, e saia desse loop, isso quer dizer que o fast chegou ao fim do loop, ou seja, nao ha ciclo, e podemos retornar falso.
+    }
 }
