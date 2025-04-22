@@ -61,4 +61,40 @@ public class LinkedListExercises
 
         return false; //Caso nossas condicoes sejam ativas no while, e saia desse loop, isso quer dizer que o fast chegou ao fim do loop, ou seja, nao ha ciclo, e podemos retornar falso.
     }
+
+    //Ex 143 
+    public void ReorderList(ListNode head)
+    {
+        ListNode slow = head;
+        ListNode fast = head.next;
+
+        while (fast != null && fast.next != null) //Esse while sera usado para dividir a lista em 2 metades, basicamente ele rodara ate o fast chegar no final (ou no ultimo elemento antes do final), e nesse exato momento, o ponteiro slow apontara exatamente para o final da primeira sublista, assim descobrimos como dividir a lista em 2 partes.
+        {
+            slow = slow.next; //Slow se move 1 casa por vez.
+            fast = fast.next.next; //Fast se move 2 casas por vez.
+        }
+
+        ListNode secondHalfFirstNode = slow.next; //O proximo node apos o slow sera exatamente o inicio da segunda lista.
+        ListNode prev = slow.next = null;
+        while (secondHalfFirstNode != null) //Esse while ira dar um reverse na segunda metade da lista
+        {
+            ListNode temp = secondHalfFirstNode.next;
+            secondHalfFirstNode.next = prev;
+            prev = secondHalfFirstNode;
+            secondHalfFirstNode = temp;
+        }
+
+        ListNode firstHalfFirstNode = head;
+        secondHalfFirstNode = prev; //Apos o while de cima que ira fazer um reverse na segunda lista, o prev sera a nova "head" da segunda lista, ou o primeiro node da segunda lista.
+        while (secondHalfFirstNode != null) 
+        {
+            ListNode temp1 = firstHalfFirstNode.next; //Temos que guardar ambos os links nexts tanto do primeiro node da primeira lista quanto do primeiro node da segunda lista.
+            ListNode temp2 = secondHalfFirstNode.next;
+            firstHalfFirstNode.next = secondHalfFirstNode; //Na primeira iteracao, o primeiro elemento da segunda lista sera o novo 2 elemento da primeira lista.
+            secondHalfFirstNode.next = temp1;
+            firstHalfFirstNode = temp1; //O ponteiro da primeira lista se movera para o "segundo elemento original" da lista para continuar o processamento
+            secondHalfFirstNode = temp2; //Exatamente o mesmo acontecera com a segunda lista.
+        }
+
+    }
 }
