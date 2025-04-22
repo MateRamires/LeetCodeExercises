@@ -95,6 +95,28 @@ public class LinkedListExercises
             firstHalfFirstNode = temp1; //O ponteiro da primeira lista se movera para o "segundo elemento original" da lista para continuar o processamento
             secondHalfFirstNode = temp2; //Exatamente o mesmo acontecera com a segunda lista.
         }
+    }
 
+    //Ex 19
+    public ListNode RemoveNthFromEnd(ListNode head, int n)
+    {
+        ListNode dummy = new ListNode(0, head); //Temos que criar um dummy, pois queremos que o LeftP caia uma casa antes do elemento que queremos eliminar, para ele cair uma casa antes, criamos um novo node que vem antes de tudo.
+        ListNode leftP = dummy;
+        ListNode rightP = head;
+
+        while (n > 0) //O ponteiro direito deve se posicionar N vezes para frente do node Head, entao fazemos ele while que vai rodar N vezes e vai elevando a posicao do ponteiro direito.
+        { 
+            rightP = rightP.next;
+            n--;
+        }
+
+        while (rightP != null) //Por fim, para dar certo, precisamos que o ponteiro direito chegue a nulo, ou seja, chegue ao fim da linked list, ai nesse caso, o ponteiro esquerdo estara em cima do node anterior ao elemento que vamos eliminar.
+        {
+            leftP = leftP.next;
+            rightP = rightP.next;
+        }
+
+        leftP.next = leftP.next.next; //Basta agora falar que o proximo elemento do elemento anterior ao que tem que ser eliminado eh igual a next.next, ou seja, vamos pular o elemento a ser eliminado, eliminando-o.
+        return dummy.next; //Temos que retornar o elemento pos dummy, pois o dummy eh so para fins do exercicio funcionar, ele nao deve aparecer na lista final.
     }
 }
