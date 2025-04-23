@@ -122,6 +122,8 @@ public class LinkedListExercises
         leftP.next = leftP.next.next; //Basta agora falar que o proximo elemento do elemento anterior ao que tem que ser eliminado eh igual a next.next, ou seja, vamos pular o elemento a ser eliminado, eliminando-o.
         return dummy.next; //Temos que retornar o elemento pos dummy, pois o dummy eh so para fins do exercicio funcionar, ele nao deve aparecer na lista final.
     }
+
+    //Ex 138
     public NodeWithRandom CopyRandomList(NodeWithRandom head)
     {
         Dictionary<NodeWithRandom, NodeWithRandom> oldToCopy = new Dictionary<NodeWithRandom, NodeWithRandom>(); //Criaremos um HashMap para mapear todos os nodes sendo a chave o ponteiro ao node original e o valor o ponteiro ao node copiado, que tera o valor original, assim, quando fizermos mudancas no node original, ao checarmos nosso hashMap, podemos usar esses ponteiros para recuperarmos os valores originais dos nodes.
