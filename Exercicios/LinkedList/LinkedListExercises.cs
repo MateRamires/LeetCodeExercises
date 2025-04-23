@@ -147,4 +147,29 @@ public class LinkedListExercises
 
         return head != null ? oldToCopy[head] : null;
     }
+
+    //Ex 2
+    public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+    {
+        ListNode dummy = new ListNode(); //Como ja aconteceu em diversos outros exercicios, usamos um dummy node para que nao tenha que criar a lista no meio do processamento, ela ja eh criada aqui, com um valor que nao sera considerado mais a frente.
+        ListNode current = dummy; //A variavel current que sera a importante, pois iremos sempre considerar o current.next, entao atualmente, current = dummy, mas logo no inicio do processamento abaixo, ja iremos colocar um next ao current, e ai que de fato comecara nossa lista.
+
+        int carry = 0; //Esse eh o valor que eh carregado quando uma soma da maior que 10, entao se (7 + 8 = 15) entao 5 ficara no node atual e 1 sera "carregado" para a proxima soma, e esse 1 carregado, eh exatamente essa variavel, que vai guardar esse numero para a proxima iteracao.
+        while (l1 != null || l2 != null || carry != 0) //Esse while rodara enquanto AMBAS as listas tiverem elementos (so para se nao tiver mais elementos) E se o carry nao tiver mais valor algum, pois se ambas as listas tiverem acabado, mas o carry tiver algum valor, esse valor tem que ser inserido ao fim da lista, pois ele sera o primeiro elemento da soma, quando ela nao esta invertida. Algo como (8 + 7 = 15), ambas as listas ja acabaram, mas o valor final deve ter 2 nodes, 5 e 1, se nao colocassemos essa verificacao do carry, o resultado final seria apenas 5, e pularia o 1 que ficou no carry, dando errado.
+        {
+            int v1 = (l1 != null) ? l1.val : 0; //Esse sera o valor da primeira lista que vamos somar, mas verificarmos primeiro se HA algum valor nessa lista, pois se nao houver, isso quer dizer que a lista acabou, porem a lista de baixo ainda pode ter valor, ou nosso carry ainda pode ter algum numero, nesse caso, temos que "fingir" que a lista1 (que esta vazia, ou nula) na verdade tem o valor 0.
+            int v2 = (l2 != null) ? l2.val : 0; //Exatamente a mesma coisa do de cima, mas para a lista2.
+
+            int val = v1 + v2 + carry; //Aqui estamos pegando o valor da soma dos 2 elementos das duas listas, mais o valor que foi carregado entre uma iteracao e outra (carry)
+            carry = val / 10; //Para sabermos o valor de carry, precisamos fazer essa operacao, se a soma dos 2 valores for 15, fazemos 15 / 10 = 1.
+            val = val % 10; //Na mesma pegada da linha de cima, fazemos 15 / 10 = 1, e sobra 5 (usamos % que eh modulo para saber quanto sobrara de uma operacao de divisao de inteiros).
+            current.next = new ListNode(val); //Por fim, adicionamos o valor (apos a divisao/modulo) ao proximo elemento do elemento atual.
+
+            current = current.next; //Para a proxima iteracao, mudamos o atual para o proximo elemento (que acabamos de adicionar)
+            l1 = (l1 != null) ? l1.next : null; //Por fim, precisamos verificar se o proximo elemento de ambas a listas EXISTE, se nao existir, ai a lista sera null agora, por isso em cima verificamos se a lista eh null, pois aqui ela se tornara null caso nao haja mais elementos.
+            l2 = (l2 != null) ? l2.next : null;
+        }
+
+        return dummy.next; //Como o dummy eh apenas para criacao da lista, retornamos apenas o elementos pos o dummy pra frente.
+    }
 }
