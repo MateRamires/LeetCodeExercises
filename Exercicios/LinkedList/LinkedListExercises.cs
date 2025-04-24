@@ -172,4 +172,57 @@ public class LinkedListExercises
 
         return dummy.next; //Como o dummy eh apenas para criacao da lista, retornamos apenas o elementos pos o dummy pra frente.
     }
+
+    //Ex 23
+    public ListNode MergeKLists(ListNode[] lists)
+    {
+        if (lists == null || lists.Length == 0) //if para tratar edge cases onde nao ha linked lists dentro da lista.
+            return null;
+
+        while (lists.Length > 1) //Nos vamos fazer merges em pares de listas, e vamos continuar fazendo isso ate que sobre apenas uma lista, que sera o nosso resultado, por isso a nossa condicao aqui eh while lists > 1, pois quando tiver 1 lista, nos chegamos a resposta, logo podemos sair do while.
+        { 
+            List<ListNode> mergedLists = new List<ListNode>();
+
+            for (int i = 0; i < lists.Length; i += 2) //Como vamos fazer um merge sob 2 listas por iteracao, entao vamos ter que colocar que o for vai incrementar 2 de cada vez, ao inves de 1.
+            {
+                ListNode l1 = lists[i]; //A primeira lista obviamente sera apenas a lista na posicao i.
+                ListNode l2 = (i + 1) < lists.Length ? lists[i + 1] : null; //A lista 2 pode ser null, pois se a quantidade total de linked lists for impar, em um determinado momento i + 1 nao existira no array de listas, por isso temos que checar se a length da lista eh maior que i + 1 antes de fazer algo.
+                mergedLists.Add(MergeList(l1,l2)); 
+            }
+            lists = mergedLists.ToArray(); //Temos que transformar mergedList em array pois originalmente ela eh uma lista generica e nao um array.
+        }
+        return lists[0]; //Retornaremos justamente o unico elemento restante de lists, que eh o nosso array ordenado.
+    }
+
+    private ListNode MergeList(ListNode l1, ListNode l2) 
+    { 
+        ListNode dummy = new ListNode();
+        ListNode tail = dummy;
+
+        while (l1 != null && l2 != null) 
+        {
+            if (l1.val < l2.val)
+            {
+                tail.next = l1;
+                l1 = l1.next;
+            }
+            else 
+            { 
+                tail.next = l2;
+                l2 = l2.next;
+            }
+            tail = tail.next;
+        }
+
+        if (l1 != null) 
+        {
+            tail.next = l1;
+        }
+        if (l2 != null)
+        {
+            tail.next = l2;
+        }
+
+        return dummy.next;
+    }
 }
