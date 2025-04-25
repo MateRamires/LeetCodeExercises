@@ -225,4 +225,26 @@ public class LinkedListExercises
 
         return dummy.next;
     }
+
+    //Ex 287
+    public int FindDuplicate(int[] nums)
+    {
+        int slow = 0, fast = 0;
+        while (true) //Esse while eh para acharmos o ponto onde o fast e o slow se encontram, sinalizando que ha um ciclo nessa linked list, se fosse um exercicio de saber se tem ciclo ou nao, esse codigo ja bastaria.
+        {
+            slow = nums[slow];
+            fast = nums[nums[fast]]; //Usamos esse passo para pular 2 passos, pois nums[fast] te daria o proximo indice, nums[nums[fast]] mostra onde o valor dessa casa aponta, ou seja, ele pulara 2 casas, pois ele vera qual valor a primeira casa aponta, e a primeira casa ou primeiro "node" aponta para o segundo "node" da nossa linked list.
+            if (slow == fast)
+                break;
+        }
+
+        int slow2 = 0;
+        while (true) //Esse while nao eh nem um pouco intuitivo, mas esse eh o floyd's algoritm, basicamente pegamos o ponto onde o slow pointer e o fast pointer se encontram, e iniciamos um novo while a partir disso, nesse novo while, esquecemos o fast pointer e so usamos o slow pointer antigo, e um slow pointer novo, que vai apontar para o inicio da lista. Quando o slow se encontrar com o fast, esse ponto sera exatamente o inicio do ciclo.
+        {
+            slow = nums[slow];
+            slow2 = nums[slow2];
+            if (slow == slow2) 
+                return slow;
+        }
+    }
 }
