@@ -247,4 +247,45 @@ public class LinkedListExercises
                 return slow;
         }
     }
+
+    //Ex 25
+    public ListNode ReverseKGroup(ListNode head, int k)
+    {
+        ListNode dummy = new ListNode(0, head);
+        ListNode groupPrev = dummy; //Nos sempre temos que salvar um node antes do grupo que sera invertido, entao digamos que temos 1 - 2 - 3 , vamos inverter para 1 - 3 - 2. Nos temos que salvar o 1, para que possamos dizer 1.next agora eh 3 e nao mais 2.
+
+        while (true) 
+        {
+            ListNode kth = GetKth(groupPrev, k); //Aqui vamos achar exatamente qual o grupo de elementos que vamos alterar, entao no exemplo 1-2-3, queremos alterar o grupo 2-3, temos que achar esse grupo e essa funcao fara isso.
+            if (kth == null) //Como foi dito na funcao, se kth for nulo, isso quer dizer que a linked list acabou antes mesmo de completar o grupo com tamanho k, se isso acontecer, acabou o processamento, nada mais sera invertido.
+                break;
+            ListNode groupNext = kth.next; //Assim como temos que manter uma variavel guardando um node antes do nosso grupo, nos tambem teremos que ter uma variavel que guarda um valor apos o ultimo elemento do grupo.
+
+            //A partir daqui nos vamos comecar a fazer a reversao do grupo, com um codigo que ja vimos em outros exercicios
+            ListNode prev = kth.next;
+            ListNode curr = groupPrev.next;
+            while (curr != groupNext) //Enquanto current nao chegar ao fim do grupo atual (groupNext)
+            {
+                ListNode tmp = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = tmp;
+            }
+
+            ListNode tmpNode = groupPrev.next; //Vamos salvar o ULTIMO elemento da nossa lista invertida
+            groupPrev.next = kth; //O proximo elemento de groupPrev agora eh o ultimo elemento da lista original, que na invertida, eh na verdade o primeiro
+            groupPrev = tmpNode; //Agora groupPrev deve ficar posicionado no fim da lista invertida, para comecarmos a inverter a proxima lista da nossa linked list.
+        }
+        return dummy.next;
+    }
+
+    private ListNode GetKth(ListNode curr, int k) 
+    {
+        while (curr != null && k > 0) //Aqui a logica sera a seguinte, temos que achar o node que demarcara o fim do grupo a ser alterado, porem, existe a possibilidade de os nodes acabarem antes de chegarmos no k, por isso verificamos se k for igual a 0 OU se o node atual eh nulo, e caso algum dos dois se torne verdadeiro, saimos do while e retornamos esse node, que possivelmente pode ser null tambem.
+        { 
+            curr = curr.next; //Vamos indo para o proximo node a cada iteracao
+            k--; //Diminuimos o k ate ele chegar a 0, ai saberemos exatamente o grupo que tera que ser invertido
+        }
+        return curr; //Iremos retornar exatamente o node que delimita o fim do grupo a ser alterado OU nulo, pois a linked list pode ter acabado.
+    }
 }
