@@ -1,4 +1,4 @@
-﻿namespace Exercicios.Two_Pointers;
+﻿namespace Exercicios.Trees;
 
 public class TreeNode
 {

@@ -1,6 +1,4 @@
-﻿using Exercicios.Two_Pointers;
-
-namespace Exercicios.Trees;
+﻿namespace Exercicios.Trees;
 
 public class TreesExercises
 {
