@@ -27,8 +27,8 @@ public class TreesExercises
 
     private int Ex543DFS(TreeNode curr, ref int res) 
     {
-        if (curr == null) 
-            return 0;
+        if (curr == null) //Toda recursao necessita de um exit, para que a recursao nao tenha a possibilidade de rodar para sempre, aqui a recursao saira caso o node atual seja nulo.
+            return 0; //A altura eh 0, pois se o node atual eh nulo, entao nao ha altura para essa direcao, imaginemos que o node 1 tem um filho a esquerda (7) e nenhum filho a direita, nesse caso, a altura da esquerda sera 1, e a altura da direita sera ZERO, pois nao ha nodes. Porem, mesmo nao havendo nodes a direita, havera um momento em que buscaremos curr.right, e nesse momento, ele ira chamar essa funcao DFS, mas caira nesse IF, pois esse node da direita nao existe, ou seja, eh nulo.
 
         int left = Ex543DFS(curr.left, ref res); //Aqui estamos pegando a altura da sub-tree esquerda.
         int right = Ex543DFS(curr.right, ref res); //E aqui a altura da sub-tree direita.
