@@ -16,4 +16,23 @@ public class TreesExercises
 
         return root; //Retornamos a cabeca da arvore por fim.
     }
+
+    //Ex 543
+    public int DiameterOfBinaryTree(TreeNode root)
+    {
+        int res = 0; //Vamos usar como parametro do nosso dfs a palavra-chave ref, que significa que essa variavel sera alterada mesmo estando no escopo da funcao.
+        Ex543DFS(root, ref res); // Esse DFS nao vai retornar o diametro, ele vai retornar a altura de um dos lados apenas.
+        return res;
+    }
+
+    private int Ex543DFS(TreeNode curr, ref int res) 
+    {
+        if (curr == null) 
+            return 0;
+
+        int left = Ex543DFS(curr.left, ref res); //Aqui estamos pegando a altura da sub-tree esquerda.
+        int right = Ex543DFS(curr.right, ref res); //E aqui a altura da sub-tree direita.
+        res = Math.Max(res, left + right); //left + right serao as ALTURAS, e res eh o diametro, entao aqui, nos vamos verificar se o res atual eh maior que a soma das alturas esquerda e direita, se for, ai esse diametro calculado eh maior que o diametro que ja estava na variavel res.
+        return 1 + Math.Max(left, right); //Essa funcao deve retornar a maior altura entre esquerda e direita, pois isso sera usado pelos nodes acima dele + 1. Mais 1, pois temos que considerar que vamos subir a casa do node, e essa subida adiciona + 1 a altura.
+    }
 }
