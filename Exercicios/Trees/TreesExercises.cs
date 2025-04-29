@@ -35,4 +35,15 @@ public class TreesExercises
         res = Math.Max(res, left + right); //left + right serao as ALTURAS, e res eh o diametro, entao aqui, nos vamos verificar se o res atual eh maior que a soma das alturas esquerda e direita, se for, ai esse diametro calculado eh maior que o diametro que ja estava na variavel res.
         return 1 + Math.Max(left, right); //Essa funcao deve retornar a maior altura entre esquerda e direita, pois isso sera usado pelos nodes acima dele + 1. Mais 1, pois temos que considerar que vamos subir a casa do node, e essa subida adiciona + 1 a altura.
     }
+
+    //Ex 100
+    public bool IsSameTree(TreeNode p, TreeNode q)
+    {
+        if (p == null && q == null) //Se os dois nodes que estamos analisando de ambas as arvores forem null, entao eles sao iguais
+            return true;
+        if (p != null && q != null && p.val == q.val)
+            return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right); //Aqui que temos o passo da recursao, nos vamos verificar o lado esquerdo e direito de cada node, e ir descendo, se tiver UM par de node que for diferente em algum momento da recursao, ele retornara false, e como usamos o operador (&&), isso significa que se tiver um false apenas, no fim das contas, quando voltamos para a chamada inicial, o resultado sera false, mesmo que seja apenas UM node diferente, como se quebrasse o "elo" e assim, por usar (&&) entendessemos que esse false fara todos os returns de todas as funcoes aninhadas retornarem false tambem, ate chegar na primeira chamada que tambem retornara false.
+        else //Esse else cobre todos os outros casos, por exemplo, ele cobre se um dos dois nodes for nulo, e o outro nao e cobre se o valor de um node for diferente do outro.
+            return false;
+    }
 }
