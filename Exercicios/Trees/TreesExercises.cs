@@ -98,5 +98,27 @@ public class TreesExercises
         return res; 
     }
 
-    
+    //Ex 110
+    public bool IsBalanced(TreeNode root) //Nos somos obrigados a criar uma nova funcao, pois a funcao original pedida pelo leetcode so devolve um bool, e nos queremos que a funcao recursiva devolva um par de valores, por isso criamos uma nova funcao auxiliar para esse exercicio.
+    {
+        return DfsEx110(root)[0] == 1; 
+    }
+    private int[] DfsEx110(TreeNode root) //Essa funcao vai retornar um array, mas que na verdade serao apenas 2 elementos, que sera um "booleano" e a altura da arvore. O booleano (que sera inteiro, pois podemos falar que eh 1 ou 0) sera usado para indicar se durante o processamento JA HOUVE um situacao onde a altura de um lado era maior que do outro, sendo assim, esse false ira "matar" toda a funcao e o resultado final sera false por causa disso. 
+    {
+        if (root == null) //Esse eh o base case, o cenario onde a recursao vai parar para ela nao rodar infinitamente
+            return new int[] { 1, 0 }; //Uma arvore vazia sempre sera balanceada, portanto o primeiro parametro eh 1 (true) e o segundo parametro, a altura, sera 0, pois um node vazio nao tem altura.
+
+        int[] left = DfsEx110(root.left); //Nos queremos primeiramente se subtrees direita e esquerda do node atual sao balanceadas, por isso recursivamente chamamos elas primeiro antes de checar o node atual, pois sempre temos que verificar os filhos primeiro, depois o pai, e vamos entrando na recursao ATE chegar no base case (nao tem mais filhos, sao null), ai vai voltando de pai em pai.
+        int[] right = DfsEx110(root.right);
+
+        bool balanced = (left[0] == 1 && right[0] == 1) && //Agora queremos saber se o node ATUAL eh balanceado. Para isso verificaremos primeiramente se em algum momento dos filhos do node atual, alguma subtree nao era balanceada, pois se for o caso, ai a resposta final tera que se false, se todos os nodes forem balanceados MENOS UM, ja eh tudo false.
+                        (Math.Abs(left[1] - right[1]) <= 1); //Nos tambem queremos saber o tamanho absoluto entre os nodes esquerdo e direito do node atual (Math.Abs eh usado para nao retornar negativo). Nos pegamos entao o segundo valor de left e right, o segundo valor pois eh ele que guarda a ALTURA dos nodes, ai fazemos um menos o outro, deixamos ele positivo e checamos se a diferenca entre os 2 eh maior que 1, se for menor ou igual, ai tudo certo.
+        //Ou seja para essa variavel balanced (que indica se o node atual eh balanceado) ser true, ambas as condicoes devem ser verdadeiras, nao pode ter tido um node desbalanceado mais abaixo da arvore, e a subtracao da arvore esquerda com a direita deve ser menor ou igual a 1, se ambos forem verdade, ai o node atual eh balanceado, e essa variavel sera true.
+
+        int height = 1 + Math.Max(left[1], right[1]); //Antes de retornarmos o nosso array de pares do node atual, precisamos calcular a altura desse node + os nodes passados. A altura sera 1 (altura do node atual) + o MAIOR valor entre os seus dois filhos esquerdo e direito, pois so levaremos em consideracao o maior aqui, ja que queremos calcular a altura, e o maior eh o que importa para saber a altura total. 
+
+        return new int[] { balanced ? 1 : 0, height }; //Por fim retornamos o array com os pares de valores referentes ao node atual. 1 ou 0 como primeira casa, sendo 1 caso balanced seja true e 0 caso balanced seja false, e a altura como segundo parametro, que calculamos na linha de cima.
+    }
+
+
 }
