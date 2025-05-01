@@ -145,4 +145,21 @@ public class TreesExercises
 
         return false; //Por fim, se nenhum dos ifs acima for verdadeiro, isso quer dizer que os nodes nao sao iguais. Ou um node eh nulo e o outro nao, ou o valor de um node eh diferente do outro, nesse caso, retornamos false, pois as arvores nao sao iguais.
     }
+
+    //Ex 235
+    public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
+    {
+        TreeNode cur = root;
+
+        while (cur != null) //Nunca vai ser nulo, mas vamos executar essa funcao "para sempre" pois na verdade sabemos que iremos achar o valor em um determinado momento, entao nao rodara para sempre de fato.
+        {
+            if (p.val > cur.val && q.val > cur.val) //Se o valor de p for maior que o node atual e o valor de q TAMBEM for maior que o node atual, entao temos que buscar o LCA na direita, pois na direita eh onde apenas existem numeros maiores que o node atual
+                cur = cur.right; //Agora o node atual foi para direita, onde continuaremos a busca pelo LCA.
+            else if (p.val < cur.val && q.val < cur.val) //Aqui eh o caso contrario, caso AMBOS p e q tenham valores menores que o node atual, isso quer dizer que o LCA que estamos buscando esta inevitavelmente a esquerda, pois na esquerda que tem numeros menores que o node atual.
+                cur = cur.left; //Movemos o node atual para esquerda.
+            else
+                return cur; //O else aqui sera o caso onde P e Q, um ou o outro sera maior e outro sera menor que o atual, ou seja, o node atual eh exatamente no "meio" onde um dos valores eh maior que ele e o outro valor eh menor, se isso acontecer, sabemos com certeza que esse valor EH o LCA que estamos buscando, ele eh o "node chefe" em comum mais proximo de p e q
+        }
+        return null; //Isso nem era necessario, pos eh garantido que dentro do while sera acionado o return cur.
+    }
 }
