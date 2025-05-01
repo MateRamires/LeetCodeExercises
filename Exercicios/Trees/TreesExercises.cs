@@ -120,5 +120,29 @@ public class TreesExercises
         return new int[] { balanced ? 1 : 0, height }; //Por fim retornamos o array com os pares de valores referentes ao node atual. 1 ou 0 como primeira casa, sendo 1 caso balanced seja true e 0 caso balanced seja false, e a altura como segundo parametro, que calculamos na linha de cima.
     }
 
+    //Ex 572
+    public bool IsSubtree(TreeNode root, TreeNode subRoot)
+    {
+        if (subRoot == null)
+            return true; //Se a subtree for nula, entao ela SEMPRE sera uma subtree da tree principal, isso porque, a tree principal sempre tera pelo menos um node null, mesmo que seja a tree inteira sendo null ou um node filho de outro node ser null.
 
+        if (root == null)
+            return false; //Agora caso contrario, ai retorna false. Isso porque, se a tree principal for null e a subtree for qualquer outra coisa, entao a subtree NAO tem como estar presente na tree principal, ja que ela eh nula. (Obs: se subtree e tree forem ambas nulas, ai as duas sao iguais, POREM, a ordem como inserimos os ifs, faz com que esse cenario nunca aconteca nessa funcao, pois se a subtree for nula, ja automaticamente retornamos true por causa do if acima, evitando que colocassemos nesse if algo como (... && subRoot != null) pois seria redundante. )
+
+        if (SameTree(root, subRoot)) //Agora aqui que chamamos a nossa funcao auxiliar, ela vai verificar se a tree principal contem a nossa subtree, de inicio, ele vai verificar se a subtree esta presente na tree a partir do node inicial. Isso vai mudar quando comecarmos com a recursao nas linhas abaixo.
+            return true;
+
+        return IsSubtree(root.left, subRoot) || IsSubtree(root.right, subRoot); //Aqui comecamos a recursao, agora nos vamos checar se a nossa subtree esta presente nos filhos do node atual da tree principal, e essa recursao ira continuar ATE que encontremos a subtree OU ate que caia no base case (root == null), se cair no base case em ambos os lados esquerdo e direito, significa que nao foi encontrado a subtree na tree principal, portanto, eh falso, a subtree nao esta presente na tree principal
+    }
+    public bool SameTree(TreeNode root, TreeNode subRoot) //Essa funcao auxiliar eh exatamente igual a outro exercicio que fizemos acima, isSameTree.
+    {
+        if (root == null && subRoot == null)
+            return true; //Esse eh o base-case, vamos verificar se as arvores sao iguais ate que ambas vao acabar, chegando no filho do ultimo node, que eh null, nesse caso, retornara true e finalizara a recursao.
+
+        if (root != null && subRoot != null && root.val == subRoot.val) //Nesse if que vamos comecar a recursao, verificaremos se os 2 nodes sao diferentes de null, pois se um for null e o outro nao, ai as arvores nao sao iguais, e trataremos disso abaixo, alem disso, verificamos se os valores dos 2 nodes sao iguais, pois eles tem que ser iguais para continuar, se nao forem iguais, ai as arvores nao sao iguais e trataremos disso abaixo
+            return SameTree(root.left, subRoot.left) && //Aqui chamamos a mesma funcao, dessa vez passando os 2 filhos do node atual, e assim por diante.
+                   SameTree(root.right, subRoot.right);
+
+        return false; //Por fim, se nenhum dos ifs acima for verdadeiro, isso quer dizer que os nodes nao sao iguais. Ou um node eh nulo e o outro nao, ou o valor de um node eh diferente do outro, nesse caso, retornamos false, pois as arvores nao sao iguais.
+    }
 }
