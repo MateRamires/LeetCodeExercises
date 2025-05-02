@@ -162,4 +162,39 @@ public class TreesExercises
         }
         return null; //Isso nem era necessario, pos eh garantido que dentro do while sera acionado o return cur.
     }
+
+    //Ex 102
+    public IList<IList<int>> LevelOrder(TreeNode root)
+    {
+        List<IList<int>> res = new List<IList<int>>();
+        if (root == null) return res; //If verificando o edge-case de a arvore ser nula, nesse caso retornamos a lista vazia.
+
+        Queue <TreeNode> q = new Queue<TreeNode>(); //Criamos nossa queue que recebe apenas TreeNode's.
+        q.Enqueue(root); //Primeiramente, ja adicionamos o primeiro node root.
+
+        while (q.Count > 0) //Esse while vai rodar enquanto houver elementos (nodes) dentro da queue.
+        { 
+            List<int> currentLevel = new List<int> (); //Criamos uma lista que armazenara o nivel atual, pois iremos adicionar os nodes do nivel atual posteriormente no codigo.
+
+            for (int i = q.Count; i > 0; i--) //Esse for ira iterar sob toda nossa queue.
+            {
+                TreeNode currentNode = q.Dequeue(); //Primeiramente retiramos o node que entrou primeiro (first in - first out) e a ordem dos nodes dentro da queue sempre sera a ordem esquerda para direita, por causa da forma que vamos adiciona os filhos desses nodes mais abaixo.
+                if (currentNode != null) //Verificamos se o node de fato existe, pois eh possivel que esse node seja null, pois o node-pai pode nao ter filhos, ou pode nao ter filhos em um de seus 2 lados.
+                { 
+                    currentLevel.Add(currentNode.val); //Adicionamos o node atual na nossa lista do nivel atual, pois teremos que adicionar essa lista a nossa lista principal (res) ao fim desse for, montando assim, a lista com todos os nodes do nivel atual.
+                    q.Enqueue(currentNode.left); //Adicionamos a queue os nodes filhos do node atual, comecando com o node da esquerda, pois temos que seguir essa ordem.
+                    q.Enqueue(currentNode.right); //Faremos o mesmo com o node filho direito.
+                }
+            }
+            if (currentLevel.Count > 0) //Como estamos fazendo i = q.count, mesmo que adicionemos valor a q, o i nao ira mudar de valor, sendo assim, ele ira sair do for quando passar por todos os elementos de q original (antes de adicionar os novos elementos filhos). Sendo assim, no fim iremos adicionar a lista currentLevel, que contem todos os nodes do determinado nivel que estamos a lista principal res, que eh uma lista e que no fim ira conter todos os niveis em listas menores.
+                res.Add(currentLevel);
+        }
+        return res; //Quando o while acabar, significa que ja passamos por TODOS os nodes, ai podemos retornar a variavel res.
+    }
+
+    //Ex 199
+    public IList<int> RightSideView(TreeNode root)
+    {
+
+    }
 }
