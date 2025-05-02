@@ -195,6 +195,28 @@ public class TreesExercises
     //Ex 199
     public IList<int> RightSideView(TreeNode root)
     {
+        List<int> res = new List<int>();
+        Queue<TreeNode> q = new Queue<TreeNode>();
+        q.Enqueue(root); //Ate aqui fazemos o padrao, criamos a lista que contera a resposta final, criamos a queue e colocamos nessa queue o primeiro elemento da arvore.
 
+        while (q.Count > 0) //Como padrao do BFS vamos rodar esse while ate todos os nodes serem visitados, ou seja, ate nao haverem mais nodes dentro da queue.
+        {
+            TreeNode rightMostNode = null; //Aqui iremos criar a variavel importante para esse exercicio, mais a frente ela sera explicada, mas ela guardara o valor mais a direita de cada nivel da arvore, e esse valor mais a direita a cada nivel, formara a resposta final do exercicio.
+            int qLen = q.Count; //Variavel para guardar a quantidade de elementos da queue antes de adicionarmos novos elementos.
+
+            for (int i = 0; i < qLen; i++) //Vamos iterar sob toda a queue original, mesmo que elementos novos sejam adicionados.
+            {
+                TreeNode currentNode = q.Dequeue(); //Pegaremos o node atual e o tiraremos da queue.
+                if (currentNode != null) 
+                { 
+                    rightMostNode = currentNode; //A logica sera a seguinte, precisamos pegar o elemento mais a direita possivel a cada nivel, como esse elemento a direita SEMPRE sera o ultimo elemento da queue original (que estamos iterando) entao sempre salvamos o elemento atual a essa variavel. Na proxima iteracao, se houver, esse novo elemento da proxima iteracao sera salvo a variavel, no fim das contas, sempre o ultimo node sera o que sera salvo a variavel rightMost, pois a ultima iteracao SERA o elemento mais a direita.
+                    q.Enqueue(currentNode.left); //Colocamos os filhos do elemento atual na queue para a analise do proximo nivel.
+                    q.Enqueue(currentNode.right);
+                }
+            }
+            if (rightMostNode != null) //Por fim, apos toda a iteracao do for, nos temos certeza que o ULTIMO elemento que passou pelo for, sera sempre o elemento mais a direita, entao basta adicionarmos esse elemento a resposa final.
+                res.Add(rightMostNode.val);
+        }
+        return res; //Apos todo o while, com a logica acima, a resposta tera o ultimo elemento a direita de cada nivel.
     }
 }
