@@ -238,6 +238,20 @@ public class TreesExercises
     }
     public int GoodNodesBfs(TreeNode root)
     {
+        int res = 0;
+        Queue<(TreeNode, int)> q = new Queue<(TreeNode, int)> (); //Criaremos uma queue, que recebera o node e o valor maximo encontrado ate determinado momento.
+        q.Enqueue((root, int.MinValue)); //Colocaremos o node, e colocaremos o menor valor de int possivel, pois isso sera necessario para a logica que criamos a mais a frente.
 
+        while (q.Count > 0) //Codigo ira rodar enquanto queue tiver nodes.
+        {
+            var (node, maxval) = q.Dequeue(); //Tiraremos da queue o node e o valor maximo
+            if (node.val >= maxval) //Iremos comparar o valor atual com o maxval, que eh o valor maximo encontrado ate o momento.
+                res++; //Se o valor atual for maior ou igual ao maxval, ai eh um good node, incrementamos nossa variavel res.
+            if (node.left != null) //Primeiro checamos se o node a esquerda eh null, se nao, nao podemos o adicionar.
+                q.Enqueue((node.left, Math.Max(maxval, node.val))); //Colocamos na queue o node atual, e verificamos se o valor do node atual eh maior que o maior valor encontrado ate agora, e qual dos dois for maior, nos enviaremos para a proxima iteracao do while, pois iremos colocar na queue o node e o valor maximo encontrado ate agora
+            if (node.right != null) //Mesma coisa do if acima.
+                q.Enqueue((node.right, Math.Max(maxval, node.val)));
+        }
+        return res;
     }
 }
