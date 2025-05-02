@@ -219,4 +219,25 @@ public class TreesExercises
         }
         return res; //Apos todo o while, com a logica acima, a resposta tera o ultimo elemento a direita de cada nivel.
     }
+
+    //Ex 1448 (Esse exercicio tem duas solucoes possiveis, vou fazer as duas, BFS e DFS.)
+    public int GoodNodesDfs(TreeNode root)
+    {
+        return DfsEx1448(root, root.val); //Criaremos uma funcao DFS, pois precisamos passar 2 parametros para essa funcao, o node e o valor do node atual.
+    }
+    private int DfsEx1448(TreeNode node, int maxVal) 
+    {
+        if (node == null) //Esse eh o base-case, para a recursao nao rodar infinitamente, se o node for null, entao logicamente ele nao sera um good-node, e retornara 0, pra nao somar na nossa variavel que soma os good-nodes.
+            return 0;
+
+        int res = (node.val >= maxVal) ? 1 : 0; //Essa sera a linha que ira checar se o node atual eh um good-node ou nao, caso o valor desse node seja maior ou igual ao MAIOR node ja visto ate agora, entao eh um good-node.
+        maxVal = (Math.Max(maxVal, node.val)); //Nos sempre precisaremos estar atualizando a variavel maxVal, pois ela que vai guardar qual foi o maior node ja encontrado ate o momento, e precisamos saber qual o maior node ja encontrado ate o momento, para compara-lo com os proximos nodes e descobrir se eles sao good-nodes ou nao.
+        res += DfsEx1448(node.left, maxVal); //Aqui comeca a recursao, iremos passar os nodes filhos da esquerda E tambem o maxVal, pois sempre precisamos passar o maior node ja encontrado ate agora, para saber se os filhos serao ou nao good-nodes com base no maior node ja encontrado.
+        res += DfsEx1448(node.right, maxVal); //Mesma coisa aqui mas para os nodes da direita.
+        return res; //Por fim retornamos o res, que sera ou 1 ou 0, e na nossa recursao usamos += ou seja, vai somando de baixo para cima quantos good nodes temos, para que quando chegue na ultima recursao, ele retorne o valor total de good nodes aqui.
+    }
+    public int GoodNodesBfs(TreeNode root)
+    {
+
+    }
 }
