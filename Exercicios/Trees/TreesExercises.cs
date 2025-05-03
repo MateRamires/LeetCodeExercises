@@ -254,4 +254,20 @@ public class TreesExercises
         }
         return res;
     }
+
+    //Ex 98
+    public bool IsValidBST(TreeNode root)
+    {
+        return valid(root, long.MinValue, long.MaxValue); //Nos comecamos a funcao de recursao passando o node root, e o root pode ser literalmente qualquer numero entre negativo infinito e positivo infinito, pois ele nao tem parentes, ou seja, ele nao precisa seguir uma "regra" de ser maior ou menor que outro node.
+    }
+    public bool valid(TreeNode node, long left, long right) 
+    {
+        if (node == null) //Base case, se chegarmos aqui, eh pq todos os nodes foram analisados e foram validados ate chegar no null, que nao muda se a arvore eh valida ou nao, portanto, se chegou ate aqui eh pq a arvore (ou pelo menos esse galho especifico foi valido)
+            return true;
+
+        if (!(left < node.val && node.val < right)) //Nos temos que verificar se o valor do node atual eh maior que a condicao esquerda e menor que a condicao direita, se isso NAO FOR O CASO (!) entao a arvore nao eh uma binary search tree valida.
+            return false;
+
+        return valid(node.left, left, node.val) && valid(node.right, node.val, right); //Agora nossa recursao, nos precisamos garantir que ambas as subtres esquerda e direita tambem sao validas as condicoes. Para a subtree esquerda, a condicao esquerda pode continuar a mesma que estava antes, a unica condicao que altera quando vamos para a subtree esquerda, eh ver o node eh MENOR que o node parente dele. Para a subtree direita a logica sera, o node atual deve ser maior que o parente.
+    }
 }
