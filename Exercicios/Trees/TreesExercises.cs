@@ -270,4 +270,28 @@ public class TreesExercises
 
         return valid(node.left, left, node.val) && valid(node.right, node.val, right); //Agora nossa recursao, nos precisamos garantir que ambas as subtres esquerda e direita tambem sao validas as condicoes. Para a subtree esquerda, a condicao esquerda pode continuar a mesma que estava antes, a unica condicao que altera quando vamos para a subtree esquerda, eh ver o node eh MENOR que o node parente dele. Para a subtree direita a logica sera, o node atual deve ser maior que o parente.
     }
+
+    //Ex 230
+    public int KthSmallest(TreeNode root, int k)
+    {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode current = root;
+
+        while (stack.Count > 0 || current != null)  //O while rodara enquanto o stack tiver elementos e enquanto current tiver algo, pois eh possivel que o stack nao tenha nada, mas o elemento atual seja um node, ai o while tem  que continuar rodando tbm.
+        {
+            while (current != null) //Esse while aqui serve para ir sempre para os nodes da esquerda, pois temos que adicionar os nodes a esquerda ate nao houver mais, ja que os da esquerda sempre sao os menores.
+            { 
+                stack.Push(current); 
+                current = current.left; //Sempre vamos ir a esquerda dentro desse while, ate que nao haja mais nenhum node a esquerda no galho que estamos analisando.
+            }
+            current = stack.Pop(); //Quando chegar o momento onde nao ha mais nodes a esquerda do node que estamos analisando, ai tiramos o ultimo node adicionado
+            
+            k--; //Essa linha tem o seguinte proposito, nos temos que achar o elemento k mais baixo, entao a cada elemento que tiramos da stack, nos vamos diminuindo essa variavel k ate que ela seja 0, quando ela for 0, entao esse elemento atual eh exatamente o qual nos precisamos retornar.
+            if (k == 0)
+                return current.val;
+
+            current = current.right; //Caso k ainda nao seja 0, como nos ja exautamos os nodes a esquerda do node atual, e sabemos que nao ha nada, entao agora vamos a direita do node atual.
+        }
+        return -1; //Caso nao exista o k na arvore vai sair do while sem dar o return current.val, ai retornamos -1 pois o k'th nao existe na arvore.
+    }
 }
