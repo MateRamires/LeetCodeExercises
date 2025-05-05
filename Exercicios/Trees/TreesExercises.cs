@@ -294,4 +294,17 @@ public class TreesExercises
         }
         return -1; //Caso nao exista o k na arvore vai sair do while sem dar o return current.val, ai retornamos -1 pois o k'th nao existe na arvore.
     }
+
+    //Ex 105
+    public TreeNode BuildTree(int[] preorder, int[] inorder)
+    {
+        if (preorder.Length == 0 || inorder.Length == 0) //Esse sera o base-case da recursao.
+            return null;
+
+        TreeNode root = new TreeNode(preorder[0]); //O primeiro elemento de preorder SEMPRE sera o root, pois essa eh a regra da travessia preorder, onde o primeiro elemento sempre sera o root.
+        int mid = Array.IndexOf(inorder, preorder[0]); //Aqui estamos encontrando qual a posicao do root node do array inorder, isso vai servir tanto para o primeiro caso (root principal), quanto para subtrees, pois toda subtree, tambem tem o "root-node" dela. Quando descobrirmos qual a posicao do root-node no array inorder, sabemos que todos os elementos a esquerda desse root node serao da subtree esquerda e todos os elementos a direita serao da subtree direita.
+        root.left = BuildTree(preorder.Skip(1).Take(mid).ToArray(), inorder.Take(mid).ToArray()); //Vamos pular o primeiro elemento (skip(1)) pois o primeiro elemento eh o root e vamos pegar TODOS os elementos antes do meio, pois todos os elementos antes do meio sao exatamente os elementos que vao ficar a esquerda. O take(mid) faz isso, pois ele pega a mesma quantidade de elementos que foi identificado no array inorder como antes do node-root.
+        root.right = BuildTree(preorder.Skip(mid + 1).ToArray(), inorder.Skip(mid + 1).ToArray()); //do array preorder nos iremos pular o root (+ 1) + os elementos esquerdos (mid), apos isso iremos comecar exatamente no primeiro elemento da subtree direita e a mesma coisa pro inorder, nos pulamos ate o root com o (mid) depois o proprio root com o (+ 1) e caimos exatamente no primeiro elemento da subtree direita.
+        return root; //No fim nos retornamos o proprio node, pois vamos montar a arvore, entao temos que retornar o node para ir montando a arvore aos poucos (left e right), no caso essa variavel root sempre vai ser preorder[0] so que a cada recursao, nosso preorder vai diminuindo de tamanho, pois vamos alterando (diminuindo) ele a cada recursao, skipando elementos ate que nao sobre nada, e caia exatamente no nosso base case preorder.length == 0 ou inorder.length == 0, e ai acaba a recursao e nao ha node nessa ultima etapa.
+    }
 }
