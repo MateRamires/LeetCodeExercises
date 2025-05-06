@@ -307,4 +307,24 @@ public class TreesExercises
         root.right = BuildTree(preorder.Skip(mid + 1).ToArray(), inorder.Skip(mid + 1).ToArray()); //do array preorder nos iremos pular o root (+ 1) + os elementos esquerdos (mid), apos isso iremos comecar exatamente no primeiro elemento da subtree direita e a mesma coisa pro inorder, nos pulamos ate o root com o (mid) depois o proprio root com o (+ 1) e caimos exatamente no primeiro elemento da subtree direita.
         return root; //No fim nos retornamos o proprio node, pois vamos montar a arvore, entao temos que retornar o node para ir montando a arvore aos poucos (left e right), no caso essa variavel root sempre vai ser preorder[0] so que a cada recursao, nosso preorder vai diminuindo de tamanho, pois vamos alterando (diminuindo) ele a cada recursao, skipando elementos ate que nao sobre nada, e caia exatamente no nosso base case preorder.length == 0 ou inorder.length == 0, e ai acaba a recursao e nao ha node nessa ultima etapa.
     }
+     
+    //Ex 124
+    public int MaxPathSum(TreeNode root)
+    {
+        int res = root.val;
+        DfsEx124(root, ref res);
+        return res;
+    }
+
+    private int DfsEx124(TreeNode root, ref int res)
+    {
+        if (root == null)
+            return 0;
+
+        int leftMax = Math.Max(DfsEx124(root.left, ref res), 0);
+        int rightMax = Math.Max(DfsEx124(root.right, ref res), 0);
+
+        res = Math.Max(res, root.val + leftMax + rightMax);
+        return root.val + Math.Max(leftMax, rightMax);
+    }
 }
