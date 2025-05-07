@@ -21,4 +21,23 @@ public class HeapPriorityQueueExercises
 
         return minHeap.Count == 0 ? 0 : minHeap.Peek(); //No fim checamos, se existe alguma pedra restante, se nao, devolve 0, se sim, devolve a pedra em questao.
     }
+
+    //Ex 973
+    public int[][] KClosest(int[][] points, int k)
+    {
+        PriorityQueue<int[], int> minHeap = new PriorityQueue<int[], int>(); 
+        foreach (int[] point in points) //Iremos iterar sob todos os pontos do plano cartesiano
+        {
+            int dist = point[0] * point[0] + point[1] * point[1]; //A distancia do ponto ate o meio eh calculada fazendo ao quadrado dos pares de valores do ponto
+            minHeap.Enqueue(new int[] { dist, point[0], point[1] }, dist); //Vamos colocar na nossa queue primeiro um array, que terao os pares de valor que formam o ponto e tambem a distancia entre ele e o meio, e o valor que ira indicar qual elemento ira sair da heap primeiro sera a propria distancia, pois queremos que a heap retire primeiro os elementos que estao mais proximos do meio, pois esses sao os pontos que queremos pra resposta do ex.
+        }
+
+        int[][] result = new int[k][]; //Criamos o array resultado com k elementos, pois vamos devolver k pontos, entao ja colocamos essa "regra" aqui.
+        for (int i = 0; i < k; ++i) //Iremos rodar esse for K vezes, pois precisamos colocar k elementos no array resposta.
+        {
+            int[] point = minHeap.Dequeue(); //Tiramos o primeiro ponto que tem o valor dist mais baixo, ou seja, tiramos o ponto mais proximo do meio da heap.
+            result[i] = new int[] { point[1], point[2] }; //Colocamos esse ponto no resultado, pegando apenas os elementos 1 e 2, pois o elemento 0 eh a dist, e ele nao precisa ser retornado.
+        }
+        return result; 
+    }
 }
