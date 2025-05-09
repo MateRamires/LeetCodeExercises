@@ -40,4 +40,19 @@ public class HeapPriorityQueueExercises
         }
         return result; 
     }
+
+    //Ex 215
+    public int FindKthLargest(int[] nums, int k)
+    {
+        PriorityQueue<int, int> minHeap = new PriorityQueue<int, int>();
+        foreach (int num in nums) 
+        {
+            minHeap.Enqueue(num, num); //Vamos sempre colocar o numero atual na nossa heap
+            if (minHeap.Count > k) //Caso a adicao de um numero ultrapasse o K, iremos retirar o numero, para que a length de nossa heap sempre fique menor que k.
+            {
+                minHeap.Dequeue(); //Aqui retiramos o valor que fez a heap ultrapassar K, esse valor sera sempre o menor valor da heap
+            }
+        }
+        return minHeap.Peek(); //Depois desse processo, nossa heap so tera uma quantidade k de numeros dentro dela, e o numero mais proximo a sair, ou seja o proximo numero a sair ao dar um dequeue sera justamente o k numero que estamos buscando, pois ele eh o k maior numero, os numeros que sao maiores que ele, sao pq sao k - 1, k - 2 etc.
+    }
 }
