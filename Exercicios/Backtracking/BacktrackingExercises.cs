@@ -41,10 +41,10 @@ public class BacktrackingExercises
         if (total == target) //A variavel total vai guardar o valor da soma do nosso array current, caso total seja exatamente igual ao target, podemos adicionar o array como uma das possiblidades de soma de numeros para chegar no valor target.
         {
             res.Add(cur.ToList()); //Adicionamos o current com os valores para nossa lista resposta.
-            return; //E podemos dar return pois chegamos no base-case
+            return; //E podemos dar return pois esse if eh um "base-case".
         }
 
-        if (total > target || i >= nums.Length)  //Agora, caso o total ultrapasse o target, ai entramos nesse outro base-case, so que nesse caso, nao vamos adicionar a nossa lista de respostas. Alem disso, esse base-case vai verificar se nosso i ultrapassou o array, pois se o i for maior que o array de candidatos, ai nao tem mais numero para se analisar e acabou o processamento.
+        if (total > target || i >= nums.Length)  //Agora, caso o total ultrapasse o target, ai entramos nesse outro "base-case", so que nesse caso, nao vamos adicionar a nossa lista de respostas. Alem disso, esse base-case vai verificar se nosso i ultrapassou o array, pois se o i for maior que o array de candidatos, ai nao tem mais numero para se analisar e acabou o processamento.
             return;
 
         //Nessas 2 linhas temos o caso onde vamos adiicionar o numero atual no nosso current.
