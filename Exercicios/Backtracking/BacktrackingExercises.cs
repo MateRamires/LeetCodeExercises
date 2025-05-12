@@ -47,7 +47,7 @@ public class BacktrackingExercises
         if (total > target || i >= nums.Length)  //Agora, caso o total ultrapasse o target, ai entramos nesse outro "base-case", so que nesse caso, nao vamos adicionar a nossa lista de respostas. Alem disso, esse base-case vai verificar se nosso i ultrapassou o array, pois se o i for maior que o array de candidatos, ai nao tem mais numero para se analisar e acabou o processamento.
             return;
 
-        //Nessas 2 linhas temos o caso onde vamos adiicionar o numero atual no nosso current.
+        //Nessas 2 linhas temos o caso onde vamos adicionar o numero atual no nosso current.
         cur.Add(nums[i]); //Aqui adicionamos o numero atual a nossa resposta.
         backtrackEx39(i, cur, total + nums[i], nums, target, res); //E comecamos a recursao, vamos continuar analisando o numero atual (pois podemos repetir o mesmo numero infinitas vezes), passando a lista curr, que contera o numero que acabamos de adicionar, o total sera ele mesmo + o proprio numero que estamos analisando (pois vamos somando esse numero ate chegar ou ultrapassar o target), e por fim passamos o mesmo array de numeros, o mesmo target e a lista response final.
 
@@ -60,7 +60,7 @@ public class BacktrackingExercises
     public IList<IList<int>> CombinationSum2(int[] candidates, int target)
     {
         List<IList<int>> res = new List<IList<int>>();
-        Array.Sort(candidates);
+        Array.Sort(candidates); //Nos precisamos dar um sort nos candidates pois no cenario onde escolhemos PULAR um numero, nos devemos pular qualquer outra duplicata desse numero tambem, pois fazendo isso, nos evitamos acontecer de uma duplicata repetir a mesma tentativa do numero original, algo como [1,7] e como tem uma duplicata de 1, teremos [7,1]. Embora os 2 usem numeros 1's diferentes, isso nao eh valido para esse exercicio, por isso, temos que pular todos os 1's quando decidimos pular um "1", e a forma mais facil de fazer isso, eh dando um sort no array, ja que todas as duplicatas ficaram juntas.
         backtrackEx40(0, new List<int>(), 0, candidates, target, res);
         return res;
     }
@@ -76,7 +76,7 @@ public class BacktrackingExercises
         if (total > target || i >= nums.Length)  //Agora, caso o total ultrapasse o target, ai entramos nesse outro "base-case", so que nesse caso, nao vamos adicionar a nossa lista de respostas. Alem disso, esse base-case vai verificar se nosso i ultrapassou o array, pois se o i for maior que o array de candidatos, ai nao tem mais numero para se analisar e acabou o processamento.
             return;
 
-        //Nessas 2 linhas temos o caso onde vamos adiicionar o numero atual no nosso current.
+        //Nessas 2 linhas temos o caso onde vamos adicionar o numero atual no nosso current.
         cur.Add(nums[i]); //Aqui adicionamos o numero atual a nossa resposta.
         backtrackEx40(i + 1, cur, total + nums[i], nums, target, res); //E comecamos a recursao, difernete do ex de cima, aqui ja vamos passar i + 1 pois nao podemos repetir o numero. Depois passamos a lista curr, que contera o numero que acabamos de adicionar, o total sera ele mesmo + o proprio numero que estamos analisando (pois vamos somando esse numero ate chegar ou ultrapassar o target), e por fim passamos o mesmo array de numeros, o mesmo target e a lista response final.
 
