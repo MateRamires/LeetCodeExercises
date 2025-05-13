@@ -90,21 +90,30 @@ public class BacktrackingExercises
     //Ex 46
     public IList<IList<int>> Permute(int[] nums)
     {
-        if (nums.Length == 0)
-            return new List<IList<int>> { new List<int>() };
-
-        var perms = Permute(nums[1..]);
-        var res = new List<IList<int>>();
-        foreach (var p in perms) 
-        {
-            for (int i = 0; i <= p.Count; i++) 
-            {
-                var p_copy = new List<int>(p);
-                p_copy.Insert(i, nums[0]);
-                res.Add(p_copy);
-            }
-        }
+        List<IList<int>> res = new List<IList<int>>();
+        BacktrackEx46(new List<int>(), nums, new bool[nums.Length], res);
         return res;
 
+    }
+    private void BacktrackEx46(List<int> perm, int[] nums, bool[] pick, List<IList<int>> res)
+    {
+        if (perm.Count == nums.Length) //Esse eh o base case, se nossa permutacao atual chegar ao mesmo tamanho do array nums, entao acabou a permutacao.
+        {
+            res.Add(new List<int>(perm)); //acabando a permutacao, adicionamos ela a nossa lista de respostas
+            return; //Por fim, acabamos o processo.
+        }
+
+        for (int i = 0; i < nums.Length; i++) //Vamos passar por todos os numeros do array.
+        {
+            if (!pick[i]) //Aqui estamos checando se o numero que estamos analisando ja esta na nossa permutacao
+            {
+                perm.Add(nums[i]); //Adicionamos o numero atual a nossa permutacao
+                pick[i] = true; //E dizemos que esse numero ja foi adicionado na permutacao, para nao adicionarmos novamente nas proximas iteracoes
+                BacktrackEx46(perm, nums, pick, res); //Aqui chamamos o backtracking novamente, dessa vez, com a unica diferenca que passamos a permutacao atual, com o numero que foi adicionado.
+                
+                perm.RemoveAt(perm.Count - 1); //Por fim, removemos o numero para continuarmos o backtrack
+                pick[i] = false; //E agora indicamos que essa posicao eh falso, pois removemos o numero
+            }
+        }
     }
 }
