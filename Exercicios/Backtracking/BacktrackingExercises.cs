@@ -86,4 +86,25 @@ public class BacktrackingExercises
             i++;
         backtrackEx40(i + 1, cur, total, nums, target, res); //Aqui passamos i + 1 para irmos para o proximo numero nao-duplicata, e o total nao eh incrementado, pois nao adicionamos nada nesse cenario, diferente do cenario de cima.
     }
+
+    //Ex 46
+    public IList<IList<int>> Permute(int[] nums)
+    {
+        if (nums.Length == 0)
+            return new List<IList<int>> { new List<int>() };
+
+        var perms = Permute(nums[1..]);
+        var res = new List<IList<int>>();
+        foreach (var p in perms) 
+        {
+            for (int i = 0; i <= p.Count; i++) 
+            {
+                var p_copy = new List<int>(p);
+                p_copy.Insert(i, nums[0]);
+                res.Add(p_copy);
+            }
+        }
+        return res;
+
+    }
 }
