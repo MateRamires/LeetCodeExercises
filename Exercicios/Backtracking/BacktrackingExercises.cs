@@ -116,4 +116,34 @@ public class BacktrackingExercises
             }
         }
     }
+
+    //Ex 90
+    public IList<IList<int>> SubsetsWithDup(int[] nums)
+    {
+        List<IList<int>> res = new List<IList<int>>();
+        Array.Sort(nums); //Para pularmos os numeros duplicados, teremos que dar um sort para garantir que todas as duplicatas fiquem juntas.
+        BacktrackEx90(0, new List<int>(), nums, res);
+        return res;
+    }
+    private void BacktrackEx90(int i, List<int> subset, int[] nums, List<IList<int>> res)
+    {
+        if (i == nums.Length) //Nosso base-case. A recursao ira rodar ate que i tenha o mesmo tamanho que o array de numeros, quando isso acontecer, sabemos que chegamos ao ultimo numero do array e nao ha nada mais a adicionar no subset.
+        {
+            res.Add(new List<int>(subset));
+            return;
+        }
+
+        //Cenario de adicionar o numero atual
+        subset.Add(nums[i]); //Adicionamos o numero atual ao subset
+        BacktrackEx90(i + 1, subset, nums, res); //Passamos para a recursao esse subset e partimos para o proximo numero do array.
+
+        //Cenario de nao adicionar o numero atual
+        subset.RemoveAt(subset.Count - 1);
+
+        //Quando estamos no cenario de nao adicionar o numero atual, nos temos que garantir que nenhuma duplicata do numero atual seja adiciona tambem, se nao quebra o proposito, entao temos que rodar esse while que ira pular todos os numeros repetidos ao numero atual e o proprio numero atual.
+        while (i + 1 < nums.Length && nums[i] == nums[i + 1]) //Aqui checamos se o valor de i == i + 1, se for, adicionamos mais 1 ao i para pularmos mais uma casa, ate acabar as duplicatas. Alem disso, temos que checar primeiro se i + 1 >= nums.length, pois se for, ai quer dizer que saimos fora do limite do array.
+            i++;
+
+        BacktrackEx90(i + 1, subset, nums, res); //Por fim, chamamos a recursao, com i + 1, pois no while acima, o i ficara parado exatamente no ultimo valor duplicado, ai fazemos um ultimo i + 1 para pular de vez todos os numeros duplicados.
+    }
 }
