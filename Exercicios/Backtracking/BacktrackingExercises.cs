@@ -146,4 +146,48 @@ public class BacktrackingExercises
 
         BacktrackEx90(i + 1, subset, nums, res); //Por fim, chamamos a recursao, com i + 1, pois no while acima, o i ficara parado exatamente no ultimo valor duplicado, ai fazemos um ultimo i + 1 para pular de vez todos os numeros duplicados.
     }
+
+    //Ex 79
+    public bool Exist(char[][] board, string word)
+    {
+        int ROWS = board.Length; //Quantidade de linhas que o tabulero tem
+        int COLS = board[0].Length; //Quantidade de colunas que o tabulero tem
+
+        for (int row = 0; row < ROWS; row++) //Nos teremos que percorrer TODO o tabuleiro, pois o inicio da palavra pode estar em qualquer posicao, ate mesmo na ultima coluna da ultima linha.
+        {
+            for (int column = 0; column < COLS; column++) 
+            {
+                var path = new HashSet<(int, int)>(); //Criamos nosso path, que durante a recursao ira guardar todos os "nodes/casas" que ja visitamos
+                if (DFS79(board, word, row, column, 0, path)) //Nos iremos chamar nosso DFS, nossa recursao para TODAS as casas, pois a palavra pode se iniciar de qualquer lugar, aqui nesse if, caso algum dos DFS que chamamos retorne true, entao a palavra foi encontrada no tabuleiro, logo, retornamos true aqui tambem.
+                    return true;
+            }
+        }
+        return false; //Caso atravessemos todo o tabuleiro e nenhum entrar em nossa condicao de o DFS retornar true, entao a palavra nao exite no tabuleiro, logo retornamos false.
+    }
+
+    private bool DFS79(char[][] board, string word, int row, int column, int currentCharInWord, HashSet<(int, int)> path) 
+    {
+        int ROWS = board.Length;
+        int COLS = board[0].Length;
+
+        if (currentCharInWord == word.Length) //A variavel currentCharInWord como o nome ja diz acompanha cada caractere em word, para checar se a palavra existe em board, sendo assim, se currentCharInWord tiver o mesmo valor que o tamanho da nossa word, isso significa que TODOS os caracteres foram encontrados em board, ou seja, a palavra de fato existe se chegarmos ate aqui, portanto, retornamos true.
+            return true;
+
+        if (row < 0 || column < 0 || row >= ROWS || column >= COLS || //aqui checaremos todos os possiveis cenarios que indicam que a palavra nao foi encontrada nessa iteracao. Primeiramente nessa linha checamos se a nossa row ou col atual saiu dos limites do array, se row < 0 entao a row esta como -1, que nao existe no array, se row for maior que ROWS (total de rows no tabuleiro) ele tambem saiu dos limites, mesma coisa para colunas.
+            board[row][column] != word[currentCharInWord] || //Outro cenario eh se a casa que estamos analisando, ou seja, o caracter que estamos analisando do tabuleiro nao corresponder com o caracter que eh esperado da palavra word, ai obviamente, a palavra nao sera formada se tiver um caractere diferente, logo retorn falso.
+            path.Contains((row, column))) //Por fim, o ultimo cenario que retorna falso, eh se a casa que estamos analisando agora ja tiver sido visitada anteriormente, pois a mesma casa nao pode ser visitada mais de uma vez para compor a palavra final, logo, falso.
+        {
+            return false;
+        }
+
+        path.Add((row, column)); //Depois das verificacoes, se nao retornar nem true, nem false, ai adicionamos essa letra (ou casa) ao path, e se o codigo chegou ate aqui, isso quer dizer que por enquanto estamos no caminho correto para achar a palavra, pois a letra atual, de fato esta na posicao esperada para formar a word que buscamos.
+        bool res = DFS79(board, word, row + 1, column, currentCharInWord + 1, path) || //Aqui comecamos a recursao, nos vamos mover o ponteiro nas quatro direcoes, pois a continuacao (proximo caractere) pode estar atras, embaixo na frente ou em cima do caractere atual, entao checamos os 4 lados.
+                   DFS79(board, word, row - 1, column, currentCharInWord + 1, path) ||
+                   DFS79(board, word, row, column + 1, currentCharInWord + 1, path) ||
+                   DFS79(board, word, row, column - 1, currentCharInWord + 1, path);
+
+        path.Remove((row, column)); //Aqui nos removemos o node/caractere atual do nosso path, para podermos fazer o backtrack, se nao removermos, o caractere atual ficara sempre em path, mas nao pode, pois agora que visitamos esse node, temos que tirar ele para futuras iteracoes.
+
+        return res; //Retornamos res, que sera true ou false, se ALGUM dos dfs retornar true, entao a palavra foi encontrada, independente se apenas um dos 4 caminhos achou true, a palavra existe, portanto true. Mas se os 4 caminhos cairem em false, ai ficara false || false || false || false, portanto, res sera false, e voltaremos para nossa funcao incial (Exist()) para testar proximos nodes como ponto de partida.
+    }
 }
