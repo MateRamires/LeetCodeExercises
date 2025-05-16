@@ -190,4 +190,45 @@ public class BacktrackingExercises
 
         return res; //Retornamos res, que sera true ou false, se ALGUM dos dfs retornar true, entao a palavra foi encontrada, independente se apenas um dos 4 caminhos achou true, a palavra existe, portanto true. Mas se os 4 caminhos cairem em false, ai ficara false || false || false || false, portanto, res sera false, e voltaremos para nossa funcao incial (Exist()) para testar proximos nodes como ponto de partida.
     }
+
+    //Ex 131
+    public IList<IList<string>> Partition(string s)
+    {
+        List<IList<string>> res = new List<IList<string>>();
+        List<string> currentPartition = new List<string>();
+        DFS131(0, s, currentPartition, res);
+        return res;
+    }
+
+    private void DFS131(int currentIndex, string s, List<string> currentPartition, List<IList<string>> res) 
+    {
+        if (currentIndex >= s.Length) //Base case, se o caractere que estamos analisando no momento for maior que o tamanho da string original, entao saimos fora dos limites da string, portanto paramos aqui.
+        {
+            res.Add(new List<string>(currentPartition)); //Se a string chegou a bater nesse base-case, eh pq ela eh de fato um palindromo, pois chegamos na ultima letra. portanto podemos adiciona-la na nossa resposta.
+            return;
+        }
+
+        for (int j = currentIndex; j < s.Length; j++) 
+        {
+            if (isPalindrome(s, currentIndex, j)) //Temos que chegar se essa substring que estamos analisando eh um palindrome e so entra no if, continuando a recursao, se de fato for um palindromo.
+            {
+                currentPartition.Add(s.Substring(currentIndex, j - currentIndex + 1)); //Adicionamos a substring atual a nossa particao atual, pois sabemos que ela eh um palindromom, por ter passado pela condicao acima.
+                DFS131(j + 1, s, currentPartition, res); //Aqui nos chamamos a recursao, onde ele vai mover o currentIndex em uma casa pra frente a partir de J/
+                currentPartition.RemoveAt(currentPartition.Count - 1); //Tiramos a particao que acabamos de adicionar para poder ir analisar outros cenarios.
+            }
+        }
+    }
+
+    private bool isPalindrome(string s, int leftP, int rightP) 
+    {
+        while (leftP < rightP) 
+        {
+            if (s[leftP] != s[rightP])
+                return false;
+
+            leftP++;
+            rightP--;
+        }
+        return true;
+    }
 }
