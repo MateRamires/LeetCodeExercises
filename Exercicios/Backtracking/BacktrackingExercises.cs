@@ -231,4 +231,34 @@ public class BacktrackingExercises
         }
         return true;
     }
+
+    //Ex 17
+    public IList<string> LetterCombinations(string digits)
+    {
+        List<string> res = new List<string>();
+        Dictionary<char, string> digitToChar = new Dictionary<char, string> { //Mapeia cada digito para suas respectivas letras, isso tem que ser hard-codado.
+            {'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"},
+            {'6', "mno"}, {'7', "qprs"}, {'8', "tuv"}, {'9', "wxyz"}
+        };
+
+        if (digits.Length == 0) //Edge-case, caso digitos nao tenha nada, devolvemos res vazia, pois nao tem combinacoes nesse caso.
+            return res;
+
+        BacktrackEx17(0, "", digits, digitToChar, res); 
+        return res;
+    }
+
+    private void BacktrackEx17(int i, string currentString, string digits, Dictionary<char, string> digitToChar, List<string> res) 
+    {
+        if (currentString.Length == digits.Length) //Nosso base-case, caso a string atual tenha exatamente o mesmo tamanho que a quantidade de digitos, entao chegamos ao fim, pois se tem 2 digitos "25" e duas letras, entao acabou essa string atual e podemos adiciona-la a res como uma das possiveis variacoes.
+        {
+            res.Add(currentString);
+            return; //Acaba a recursao.
+        }
+
+        foreach (char c in digitToChar[digits[i]]) //Aqui a logica sera a seguinte, faremos um for passando por todos os caracteres de digitsToChar na posicao "numero atual da string digits" ou seja, se o numero atual da string digits for 2, entao o for ficara assim "char c in abc" ou seja, esse for ira passar pelos 3 caracteres possiveis da letra 2.
+        {
+            BacktrackEx17(i + 1, currentString + c, digits, digitToChar, res); //A partir disso, chamaremos o backtrack e moveremos o indice para + 1, para podermos analisar o proximo digito, por exemplo o digito 3, e ao chamar o backtracking novamente, nos passamos como parametro a currentString + a letra que esta sendo analisada, sendo assim, ele chegara na proxima chamada da recursoa com o valor "a" por exemplo, e ira analisar as letras do proximo digito, e fara o mesmo processo de foreach para cada uma das 3 letras do proximo digito.
+        }
+    }
 }
