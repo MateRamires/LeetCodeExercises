@@ -45,4 +45,5 @@ public class GraphExercise684
         }
         return false; //Caso nenhum node visitado seja visitado novamente, retornamos false, nessa iteração, nao há ciclos.
     }
+
 }
