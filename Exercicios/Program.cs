@@ -1,4 +1,5 @@
 ﻿using Exercicios;
+using Exercicios.Array___Hash;
 using Exercicios.LinkedList;
 using Exercicios.Stack;
 
@@ -123,3 +124,10 @@ LinkedListBasic linkedListBasic = new LinkedListBasic();
 linkedListBasic.MontarLista();
 
 
+
+
+
+
+ArrayHashExercise14 arr = new ArrayHashExercise14();
+
+arr.LongestCommonPrefix(["bat", "bag", "bank", "band"]);
