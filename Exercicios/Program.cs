@@ -128,6 +128,5 @@ linkedListBasic.MontarLista();
 
 
 
-ArrayHashExercise14 arr = new ArrayHashExercise14();
-
-arr.LongestCommonPrefix(["bat", "bag", "bank", "band"]);
+ArrayHashExercise242Redone exercise = new ArrayHashExercise242Redone();
+exercise.IsAnagram("aacc", "ccac");
