@@ -2,6 +2,7 @@
 using Exercicios.Array___Hash;
 using Exercicios.LinkedList;
 using Exercicios.Stack;
+using Exercicios.Two_Pointers;
 
 //Array & Hashing
 ArayHashExercises ExerciseArray = new ArayHashExercises();
@@ -128,5 +129,5 @@ linkedListBasic.MontarLista();
 
 
 
-ArrayHashExercise242Redone exercise = new ArrayHashExercise242Redone();
-exercise.IsAnagram("aacc", "ccac");
+TwoPointersExercise680 exercise = new TwoPointersExercise680();
+exercise.ValidPalindrome("cbbcc");
