@@ -13,7 +13,7 @@ public class SlidingWindowExercise219
 
             visitedNumbers.Add(nums[i]);
 
-            if (visitedNumbers.Count > k)
+            if (i >= k)
                 visitedNumbers.Remove(nums[i - k]);
         }
 
