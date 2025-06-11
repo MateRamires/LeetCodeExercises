@@ -1,9 +1,15 @@
-﻿namespace Exercicios.Tries;
+﻿
+namespace Exercicios.Tries;
 
 public class TrieNode 
 { 
     public Dictionary<char, TrieNode> children = new Dictionary<char, TrieNode>(); //Cada node tera um filho, o filho sera um trieNode, e tera como chave o caractere que ele representa.
     public bool endOfWord = false; //Para cada trieNode teremos esse booleano indicando se esse trieNode eh ou nao o fim de uma palavra.
+
+    public static implicit operator TrieNode(TrieNode211 v)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class TrieExercise208
