@@ -5,7 +5,7 @@ public class SlidingWindowExercise2379
     public int MinimumRecolors(string blocks, int k)
     {
         int leftPointer = 0;
-        int leastAmoutOfWhiteBlocks = int.MaxValue;
+        int leastAmoutOfWhiteBlocks = int.MaxValue; 
         int whiteBlocksInCurrentWindow = 0;
 
         for (int rightPointer = 0; rightPointer < blocks.Length; rightPointer++) 
