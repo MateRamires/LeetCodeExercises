@@ -5,5 +5,5 @@ using Exercicios.Sliding_Window;
 using Exercicios.Stack;
 using Exercicios.Two_Pointers;
 
-SlidingWindowExercise2379 train = new SlidingWindowExercise2379();
-train.MinimumRecolors("WBWBBBW", 2);
+SlidingWindow1343 train = new SlidingWindow1343();
+train.NumOfSubarrays([2, 2, 2, 2, 5, 5, 5, 8], 3, 4);
