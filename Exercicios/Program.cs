@@ -5,5 +5,5 @@ using Exercicios.Sliding_Window;
 using Exercicios.Stack;
 using Exercicios.Two_Pointers;
 
-SlidingWindow1343 train = new SlidingWindow1343();
-train.NumOfSubarrays([2, 2, 2, 2, 5, 5, 5, 8], 3, 4);
+SlidingWindowExercise1052 train = new SlidingWindowExercise1052();
+train.MaxSatisfied([1, 0, 1, 2, 1, 1, 7, 5], [0, 1, 0, 1, 0, 1, 0, 1], 3);
