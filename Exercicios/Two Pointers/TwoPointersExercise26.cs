@@ -21,4 +21,3 @@ public class TwoPointersExercise26
         return uniqueElement.Count;
     }
 }
-z

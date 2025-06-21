@@ -1,4 +1,4 @@
 ﻿using Exercicios.Two_Pointers;
 
-TwoPointersExercise26 train = new TwoPointersExercise26();
-train.RemoveDuplicates([1, 1, 2]);
+TwoPointersExercise2570 train = new TwoPointersExercise2570();
+train.MergeArrays([[1, 2], [2, 3], [4, 5]], [[1, 4], [3, 2], [4, 1]]);
