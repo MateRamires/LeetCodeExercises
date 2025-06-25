@@ -1,4 +1,4 @@
 ﻿using Exercicios.Two_Pointers;
 
-TwoPointersExercise844 train = new TwoPointersExercise844();
-train.BackspaceCompare("a", "aa#a");
+TwoPointersExercise1662 train = new TwoPointersExercise1662();
+train.ArrayStringsAreEqual(["abc", "d", "defg"], ["abcddef"]);
