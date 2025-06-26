@@ -23,10 +23,6 @@ public class SlidingWindowTrainingExercises
         return maximumSum;
     }
 
-
-
-
-
     public int test2(int[] nums, int target)
     {
         int leftPointer = 0;

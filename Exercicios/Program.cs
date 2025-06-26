@@ -1,4 +1,4 @@
 ﻿using Exercicios.Two_Pointers;
 
-TwoPointersExercise1662 train = new TwoPointersExercise1662();
-train.ArrayStringsAreEqual(["abc", "d", "defg"], ["abcddef"]);
+TwoPointersExercise80 train = new TwoPointersExercise80();
+train.RemoveDuplicates([1, 1, 1, 2, 2, 3]);
