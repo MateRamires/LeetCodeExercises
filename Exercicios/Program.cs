@@ -1,4 +1,5 @@
-﻿using Exercicios.Two_Pointers;
+﻿using Exercicios.Array___Hash;
+using Exercicios.Two_Pointers;
 
-TwoPointersExercise80 train = new TwoPointersExercise80();
-train.RemoveDuplicates([1, 1, 1, 2, 2, 3]);
+ArrayHashExercise1299 train = new ArrayHashExercise1299();
+train.ReplaceElements([17, 18, 5, 4, 6, 1]);
