@@ -2,5 +2,5 @@
 using Exercicios.Stack;
 using Exercicios.Two_Pointers;
 
-StackExercise1475Monotonic train = new StackExercise1475Monotonic();
-train.FinalPrices([10, 1, 1, 6]);
+ArrayHashExercise1394 train = new ArrayHashExercise1394();
+train.FindLucky([2, 2, 2, 3, 3]);
