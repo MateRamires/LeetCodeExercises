@@ -24,6 +24,5 @@ public class StackExercise496
             answer[i] = nextGreater[nums1[i]];
         }
         return answer;
-
     }
 }
