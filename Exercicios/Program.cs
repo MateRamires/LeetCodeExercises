@@ -2,5 +2,5 @@
 using Exercicios.Stack;
 using Exercicios.Two_Pointers;
 
-ArrayHashExercise1394 train = new ArrayHashExercise1394();
-train.FindLucky([2, 2, 2, 3, 3]);
+StackExercise739TemperaturesRedone train = new StackExercise739TemperaturesRedone();
+train.DailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]);
