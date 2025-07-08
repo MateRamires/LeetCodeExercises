@@ -2,5 +2,5 @@
 using Exercicios.Stack;
 using Exercicios.Two_Pointers;
 
-StackExercise739TemperaturesRedone train = new StackExercise739TemperaturesRedone();
-train.DailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]);
+TwoPointersExercise2149 train = new TwoPointersExercise2149();
+train.RearrangeArray([3, 1, -2, -5, 2, -4]);
