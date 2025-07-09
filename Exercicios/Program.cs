@@ -1,6 +1,7 @@
 ﻿using Exercicios.Array___Hash;
+using Exercicios.Binary_Search;
 using Exercicios.Stack;
 using Exercicios.Two_Pointers;
 
-StackExercise946 train = new StackExercise946();
-train.ValidateStackSequences([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]);
+BinarySearchExercise704 train = new BinarySearchExercise704();
+train.Search([-1, 0, 3, 5, 9, 12], 9);
