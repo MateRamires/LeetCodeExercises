@@ -1,7 +1,8 @@
 ﻿using Exercicios.Array___Hash;
 using Exercicios.Binary_Search;
+using Exercicios.Sliding_Window;
 using Exercicios.Stack;
 using Exercicios.Two_Pointers;
 
-ArrayHashExercise3442 train = new ArrayHashExercise3442();
-train.MaxDifference("tzt");
+SlidingWindowCircularTestExercise train = new SlidingWindowCircularTestExercise();
+train.circularArray([5,7,3,1,6,9], 2, 6); 
