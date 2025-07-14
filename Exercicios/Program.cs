@@ -4,5 +4,5 @@ using Exercicios.Sliding_Window;
 using Exercicios.Stack;
 using Exercicios.Two_Pointers;
 
-SlidingWindowCircularTestExercise train = new SlidingWindowCircularTestExercise();
-train.circularArray([5,7,3,1,6,9], 2, 6); 
+ArrayHashExercise3105 train = new ArrayHashExercise3105();
+train.LongestMonotonicSubarray([1, 4, 3, 3, 2]); 
