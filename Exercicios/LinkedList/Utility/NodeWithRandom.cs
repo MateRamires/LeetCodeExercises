@@ -1,4 +1,4 @@
-﻿namespace Exercicios.LinkedList;
+﻿namespace Exercicios.LinkedList.Utility;
 
 public class NodeWithRandom
 {

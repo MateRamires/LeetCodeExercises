@@ -1,5 +1,6 @@
 ﻿using System.Runtime.ConstrainedExecution;
 using System.Xml.Linq;
+using Exercicios.LinkedList.Utility;
 
 namespace Exercicios.LinkedList;
 

@@ -1,4 +1,6 @@
-﻿namespace Exercicios.LinkedList;
+﻿using Exercicios.LinkedList.Utility;
+
+namespace Exercicios.LinkedList;
 
 public class LinkedListBasic
 {
