@@ -6,11 +6,10 @@ using Exercicios.Sliding_Window;
 using Exercicios.Stack;
 using Exercicios.Two_Pointers;
 
-var ex = new LinkedListExercise1669();
+var ex = new LinkedListExercise2058();
 
-var list1 = LinkedListHelpers.Build(new[] { 10, 1, 13, 6, 9, 5 });
-var list2 = LinkedListHelpers.Build(new[] { 100000, 100001, 100002 });
+var list1 = LinkedListHelpers.Build(new[] { 5, 3, 1, 2, 5, 1, 2 });
 
-var mergedHead = ex.MergeInBetween(list1, 3, 4, list2);
+var mergedHead = ex.NodesBetweenCriticalPoints(list1);
 
-LinkedListHelpers.Print(mergedHead);
+//LinkedListHelpers.Print(mergedHead);
