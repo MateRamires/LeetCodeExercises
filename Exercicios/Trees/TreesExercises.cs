@@ -1,4 +1,6 @@
-﻿namespace Exercicios.Trees;
+﻿using Exercicios.Trees.Helpers;
+
+namespace Exercicios.Trees;
 
 public class TreesExercises
 {

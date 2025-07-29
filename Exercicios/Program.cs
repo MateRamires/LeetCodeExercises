@@ -4,6 +4,8 @@ using Exercicios.LinkedList;
 using Exercicios.LinkedList.Utility;
 using Exercicios.Sliding_Window;
 using Exercicios.Stack;
+using Exercicios.Trees;
+using Exercicios.Trees.Helpers;
 using Exercicios.Two_Pointers;
 
 /*var ex = new LinkedListExercise1721();
@@ -14,8 +16,12 @@ var mergedHead = ex.SwapNodes(list1, 2);
 
 LinkedListHelpers.Print(mergedHead);*/
 
-var ex = new ArrayHashExercise2053();
 
-var filhodaputadocaralho = ex.KthDistinct(["a", "b", "a", "c"], 2);
+var ex = new TreeBasicExercises();
 
+var tree = TreeNodeHelpers.Build(new int?[] { 1, null, 2, 3 });
+
+var res = ex.countNumberOfNodes(tree);  
+
+Console.WriteLine(res);
 

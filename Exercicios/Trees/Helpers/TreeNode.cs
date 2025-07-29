@@ -1,4 +1,4 @@
-﻿namespace Exercicios.Trees;
+﻿namespace Exercicios.Trees.Helpers;
 
 public class TreeNode
 {
