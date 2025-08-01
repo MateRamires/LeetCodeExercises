@@ -1,4 +1,5 @@
 ﻿using Exercicios.Trees.Helpers;
+using System.ComponentModel.Design.Serialization;
 
 namespace Exercicios.Trees;
 
@@ -25,5 +26,14 @@ public class TreeBasicExercises
     {
         if (head == null) return 0;
         return 1 + countNumberOfNodesShorter(head.left) + countNumberOfNodesShorter(head.right);
+    }
+
+    //Exercise 2 - Max Tree Height
+    public int maximumTreeHeight(TreeNode node) 
+    {
+        if (node == null) return 0;
+        int left = maximumTreeHeight(node.left);
+        int right = maximumTreeHeight(node.right);
+        return 1 + Math.Max(left, right);
     }
 }
