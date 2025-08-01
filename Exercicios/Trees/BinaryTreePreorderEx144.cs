@@ -20,4 +20,28 @@ public class BinaryTreePreorderEx144
         PreOrderTraversalRecursion(node.left, result);
         PreOrderTraversalRecursion(node.right, result);
     }
+
+    public IList<int> PreorderTraversalIteractive(TreeNode root) 
+    {
+        var result = new List<int>();
+        if (root == null) return result;
+
+        var stack = new Stack<TreeNode>();
+
+        stack.Push(root);
+
+        while (stack.Count > 0) 
+        {
+            var currentNode = stack.Pop();
+            result.Add(currentNode.val);
+
+            if(currentNode.right != null)
+                stack.Push(currentNode.right);
+
+            if (currentNode.left != null)
+                stack.Push(currentNode.left);
+        }
+
+        return result;
+    }
 }
