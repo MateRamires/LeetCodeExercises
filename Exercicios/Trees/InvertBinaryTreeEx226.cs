@@ -36,4 +36,25 @@ public class InvertBinaryTreeEx226
         }
         return root;
     }
+
+    public TreeNode InvertTreeBFS(TreeNode root) 
+    {
+        if (root == null) return null;
+        Queue<TreeNode> queue = new Queue<TreeNode>();
+        queue.Enqueue(root);
+
+        while (queue.Count > 0) 
+        { 
+            var currentNode = queue.Dequeue();
+
+            var aux = currentNode.left;
+            currentNode.left = currentNode.right;
+            currentNode.right = aux;
+
+            if(currentNode.left != null) queue.Enqueue(currentNode.left);
+            if(currentNode.right != null) queue.Enqueue(currentNode.right);
+        }
+
+        return root;
+    }
 }
