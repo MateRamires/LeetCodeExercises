@@ -36,4 +36,42 @@ public class TreeBasicExercises
         int right = maximumTreeHeight(node.right);
         return 1 + Math.Max(left, right);
     }
+
+    //Exercise 3 - Check if values exists
+    public bool checkValueExists(TreeNode root, int value) 
+    {
+        if (root == null) return false;
+        if (root.val == value) return true;
+
+        checkValueExists(root.left, value);
+        checkValueExists(root.right, value);
+
+        return checkValueExists(root.left, value) || checkValueExists(root.right, value);
+    }
+
+    //Exercise 4 - Sum all values in a tree
+    public int sumTreeValues(TreeNode root) 
+    {
+        if (root == null) return 0;
+
+        int leftSide = sumTreeValues(root.left);
+        int rightSide = sumTreeValues(root.right);
+
+        return root.val + leftSide + rightSide;
+    }
+
+    //Exercise 5 - Number of leaves (nodes without children)
+    public int nodesWithoutChildren(TreeNode root) 
+    {
+        if (root == null) return 0;
+
+        int leftSide = nodesWithoutChildren(root.left);
+        int rightSide = nodesWithoutChildren(root.right);
+
+        if (root.left == null && root.right == null)
+             return 1 + leftSide + rightSide;
+        else
+            return leftSide + rightSide;
+
+    }
 }
