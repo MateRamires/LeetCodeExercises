@@ -17,13 +17,13 @@ var mergedHead = ex.SwapNodes(list1, 2);
 LinkedListHelpers.Print(mergedHead);*/
 
 
-/*var ex = new InvertBinaryTreeEx226();
+var ex = new MaximumDepthOfTreeEx104();
 
-var tree = TreeNodeHelpers.Build(new int?[] { 4, 2, 7, 1, 3, 6, 9 });
+var tree = TreeNodeHelpers.Build(new int?[] { 1, 2, 3, 4, null, null, 5 });
 
-var res = ex.InvertTreeIteractive(tree);  
+var res = ex.MaxDepthBFS(tree);  
 
-Console.WriteLine(res);*/
+Console.WriteLine(res);
 
 
 /*var ex = new ArrayHashExercise1189();

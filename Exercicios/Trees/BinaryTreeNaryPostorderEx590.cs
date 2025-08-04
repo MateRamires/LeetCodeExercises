@@ -4,13 +4,6 @@ namespace Exercicios.Trees;
 
 public class BinaryTreeNaryPostorderEx590
 {
-    public IList<int> Postorder(NodeEx590 root)
-    {
-        var result = new List<int>();
-        RecursiveTraversal(root, result);
-        return result;
-    }
-
     public class NodeEx590
     {
         public int val;
@@ -28,6 +21,13 @@ public class BinaryTreeNaryPostorderEx590
             val = _val;
             children = _children;
         }
+    }
+
+    public IList<int> Postorder(NodeEx590 root)
+    {
+        var result = new List<int>();
+        RecursiveTraversal(root, result);
+        return result;
     }
 
     private void RecursiveTraversal(NodeEx590 node, List<int> result) 
