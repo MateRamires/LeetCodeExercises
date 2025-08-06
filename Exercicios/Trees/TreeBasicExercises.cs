@@ -74,4 +74,34 @@ public class TreeBasicExercises
             return leftSide + rightSide;
 
     }
+
+    //Exercise 6 - Maximum Value in a Tree
+    public int maximumValueInTree(TreeNode root) 
+    {
+        if (root == null) return int.MinValue;
+
+        return Math.Max(root.val, Math.Max(maximumValueInTree(root.left), maximumValueInTree(root.right))); 
+    }
+
+    public int maximumValueInTree2(TreeNode root)
+    {
+        if (root == null) return int.MinValue;
+
+        int leftSideHighest = maximumValueInTree2(root.left);
+        int rightSideHighest = maximumValueInTree2(root.right);
+
+        int currentVal = root.val;
+        return Math.Max(root.val, Math.Max(leftSideHighest, rightSideHighest));
+    }
+
+    //Exercise 7 - Minimum Value in a Tree
+    public int MinimumValueInTree(TreeNode root) 
+    {
+        if (root == null) return int.MaxValue;
+
+        int lowestLeftSide = MinimumValueInTree(root.left);
+        int lowestRightSide = MinimumValueInTree(root.right);
+
+        return Math.Min(root.val, Math.Min(lowestLeftSide, lowestRightSide));   
+    }
 }
