@@ -10,13 +10,8 @@ public class SameTreeEx100
             return true;
 
         if (p != null && q != null && p.val == q.val)
-        {
             return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
-        }
         else 
-        {
             return false;
-        }
-
     }
 }

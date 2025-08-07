@@ -17,11 +17,12 @@ var mergedHead = ex.SwapNodes(list1, 2);
 LinkedListHelpers.Print(mergedHead);*/
 
 
-var ex = new TreeBasicExercises();
+var ex = new SameTreeEx100();
 
-var tree = TreeNodeHelpers.Build(new int?[] { -2147483648, -2147483648, -2147483648 });
+var tree = TreeNodeHelpers.Build(new int?[] { 1, 2 });
+var tree2 = TreeNodeHelpers.Build(new int?[] { 1, null, 2 });
 
-var res = ex.maximumValueInTree(tree);  
+var res = ex.IsSameTree(tree, tree2);  
 
 Console.WriteLine(res);
 
