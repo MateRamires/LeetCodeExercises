@@ -17,18 +17,18 @@ var mergedHead = ex.SwapNodes(list1, 2);
 LinkedListHelpers.Print(mergedHead);*/
 
 
-var ex = new SameTreeEx100();
+/*var ex = new SameTreeEx100();
 
 var tree = TreeNodeHelpers.Build(new int?[] { 1, 2 });
 var tree2 = TreeNodeHelpers.Build(new int?[] { 1, null, 2 });
 
 var res = ex.IsSameTree(tree, tree2);  
 
-Console.WriteLine(res);
+Console.WriteLine(res);*/
 
 
-/*var ex = new ArrayHashExercise1189();
+var ex = new ProductArrayExceptSelfPrefixSumEx238();
 
-var res = ex.MaxNumberOfBalloons("loonbalxballpoon");*/
+var res = ex.ProductExceptSelf([1, 2, 3, 4]);
 
 
