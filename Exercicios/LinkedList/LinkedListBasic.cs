@@ -17,4 +17,22 @@ public class LinkedListBasic
             atual = atual.next;
         }
     }
+
+    public bool isThereCycle(ListNode head) 
+    {
+        if (head == null || head.next == null) return false;
+
+        var slowNode = head;
+        var fastNode = head.next;
+        while (fastNode != null && fastNode.next != null) 
+        {
+            if (slowNode == fastNode)
+                return true;
+
+            slowNode = slowNode.next;
+            fastNode = fastNode.next.next;
+        }
+
+        return false;
+    }
 }

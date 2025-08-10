@@ -90,7 +90,6 @@ public class TreeBasicExercises
         int leftSideHighest = maximumValueInTree2(root.left);
         int rightSideHighest = maximumValueInTree2(root.right);
 
-        int currentVal = root.val;
         return Math.Max(root.val, Math.Max(leftSideHighest, rightSideHighest));
     }
 
@@ -104,4 +103,6 @@ public class TreeBasicExercises
 
         return Math.Min(root.val, Math.Min(lowestLeftSide, lowestRightSide));   
     }
+
+    //Exercise 8 - Count number of pair nodes
 }
