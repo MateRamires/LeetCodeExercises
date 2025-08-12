@@ -9,7 +9,7 @@ public class ContainerWithMostWaterEx11
 
         while (left < right) 
         { 
-            int currentArea = Math.Min(height[left], height[right]) * (right - left);
+            int currentArea = Math.Min(height[left], height[right]) * (right - left); //Para calcular a area tem que pegar o menor entre height left e height right
 
             res = Math.Max(res, currentArea);
 
