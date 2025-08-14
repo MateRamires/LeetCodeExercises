@@ -13,7 +13,7 @@ public class ContainerWithMostWaterEx11
 
             res = Math.Max(res, currentArea);
 
-            if (height[left] > height[right]) 
+            if (height[left] > height[right]) //Aqui fazemos o Two Pointers padrao, se o left for o maior, entao movemos o right para frente, e vice-versa
                 right--;
             else
                 left++;
