@@ -44,4 +44,14 @@ public class SlidingWindowTrainingExercises
         
         return smallestSubstring == int.MaxValue ? 0 : smallestSubstring;
     }
+
+
+
+    public int highestSumFixedWindow(int[] nums, int k) 
+    { 
+    
+    }
+
+
+
 }
