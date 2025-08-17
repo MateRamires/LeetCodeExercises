@@ -105,4 +105,12 @@ public class TreeBasicExercises
     }
 
     //Exercise 8 - Count number of pair nodes
+    public int NumberOfPairs(TreeNode root) 
+    {
+        if (root == null) return 0;
+
+        int self = root.val % 2 == 0 ? 1 : 0;
+
+        return self + NumberOfPairs(root.left) + NumberOfPairs(root.right);
+    }
 }
