@@ -3,21 +3,18 @@
 public class StackExercise739TemperaturesRedone
 {
     public int[] DailyTemperatures(int[] temperatures)
-    {
-        int[] answer = new int[temperatures.Length];
-        Stack<int[]> temperatureStack = new Stack<int[]>();
+    { 
+        var answer = new int[temperatures.Length];
+        var stack = new Stack<int>();
 
-        for (int i = 0; i < temperatures.Length; i++) 
+        for (int i = 0; i < temperatures.Length; i++)
         {
-
-            while (temperatureStack.Count > 0 && temperatures[i] > temperatureStack.Peek()[0]) 
+            while (stack.Count > 0 && temperatures[i] > temperatures[stack.Peek()]) 
             {
-                var temp = temperatureStack.Pop();
-
-                answer[temp[1]] = i - temp[1];
+                answer[stack.Peek()] = i - stack.Pop();
             }
 
-            temperatureStack.Push(new int[] { temperatures[i], i });
+            stack.Push(i);
         }
 
         return answer;

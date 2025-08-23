@@ -27,8 +27,8 @@ var res = ex.IsSameTree(tree, tree2);
 Console.WriteLine(res);*/
 
 
-var ex = new ContainerWithMostWaterEx11();
+var ex = new StackExercise739TemperaturesRedone();
 
-var res = ex.MaxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]);
+var res = ex.DailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]);
 
 

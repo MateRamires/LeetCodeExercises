@@ -2,8 +2,8 @@
 
 public class BinarySearchOnAnswerTestExercises
 {
-    public int SquareRoot(int x) 
+    /*public int SquareRoot(int x) 
     { 
     
-    }
+    }*/
 }

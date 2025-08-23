@@ -47,10 +47,10 @@ public class SlidingWindowTrainingExercises
 
 
 
-    public int highestSumFixedWindow(int[] nums, int k) 
+    /*public int highestSumFixedWindow(int[] nums, int k) 
     { 
     
-    }
+    }*/
 
 
 
