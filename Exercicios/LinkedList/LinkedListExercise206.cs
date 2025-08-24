@@ -8,15 +8,13 @@ public class LinkedListExercise206
     {
         ListNode previousNode = null;
         ListNode currentNode = head;
-
         while (currentNode != null) 
         {
-            ListNode temp = currentNode.next;
+            var aux = currentNode.next;
             currentNode.next = previousNode;
             previousNode = currentNode;
-            currentNode = temp;
+            currentNode = aux;
         }
-
         return previousNode;
     }
 }
