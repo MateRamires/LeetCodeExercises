@@ -27,8 +27,8 @@ var res = ex.IsSameTree(tree, tree2);
 Console.WriteLine(res);*/
 
 
-var ex = new StackExercise739TemperaturesRedone();
+var ex = new LongestSubstringWithoutRepeatingCharEx3();
 
-var res = ex.DailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]);
+var res = ex.LengthOfLongestSubstring("tmmzuxt");
 
 
