@@ -4,6 +4,7 @@ namespace Exercicios.Trees;
 
 public class RepeatedTreeExercises
 {
+    //Ex: Invert Tree
     public TreeNode InvertTree(TreeNode root)
     {
         DFS(root);
@@ -20,5 +21,13 @@ public class RepeatedTreeExercises
 
         DFS(root.left);
         DFS(root.right);
+    }
+
+    //Ex 104: Max Depth of Tree
+    public int MaxDepth(TreeNode root)
+    {
+        if (root == null) return 0;
+
+        return 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
     }
 }
