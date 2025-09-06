@@ -27,8 +27,8 @@ var res = ex.IsSameTree(tree, tree2);
 Console.WriteLine(res);*/
 
 
-var ex = new LongestSubstringWithoutRepeatingCharEx3();
+var ex = new GroupAnagramsEx49();
 
-var res = ex.LengthOfLongestSubstring("tmmzuxt");
+var res = ex.GroupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]);
 
 
