@@ -21,4 +21,22 @@ internal class GroupAnagramsEx49
         }
         return res.Values.ToList();
     }
+
+    public IList<IList<string>> GroupAnagramsSort(string[] strs)
+    {
+        var res = new Dictionary<string, IList<string>>();
+        foreach (var str in strs) 
+        {
+            char[] charArray = str.ToCharArray();
+            Array.Sort(charArray);
+            string sortedStr = new string(charArray);
+            if (!res.ContainsKey(sortedStr)) 
+            {
+                res[sortedStr] = new List<string>();
+            }
+            res[sortedStr].Add(str);
+        }
+
+        return res.Values.ToList();
+    }
 }
