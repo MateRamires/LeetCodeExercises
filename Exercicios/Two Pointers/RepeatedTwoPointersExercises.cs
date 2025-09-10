@@ -37,4 +37,28 @@ public class RepeatedTwoPointersExercises
         }
         return res;
     }
+
+
+
+    public int MaxArea(int[] height)
+    {
+        int maxArea = 0;
+        int leftPointer = 0, rightPointer = height.Length - 1;
+
+        while (leftPointer < rightPointer) 
+        {
+            int area = Math.Min(height[leftPointer], height[rightPointer]) * (rightPointer - leftPointer);
+            maxArea = Math.Max(maxArea, area);
+
+            if (height[leftPointer] > height[rightPointer])
+            {
+                rightPointer--;
+            }
+            else 
+            {
+                leftPointer++;
+            }
+        }
+        return maxArea;
+    }
 }
