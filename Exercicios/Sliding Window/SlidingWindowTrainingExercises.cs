@@ -2,56 +2,24 @@
 
 public class SlidingWindowTrainingExercises
 {
-    public int test1(int[] nums, int k) 
-    { 
-        int leftPointer = 0;
-        int currentWindowSum = 0;
-        int maximumSum = int.MinValue;
-
-        for (int rightPointer = 0; rightPointer < nums.Length; rightPointer++) 
-        { 
-            currentWindowSum += nums[rightPointer];
-
-            while (rightPointer - leftPointer + 1 > k) 
-            { 
-                currentWindowSum -= nums[leftPointer];
-                leftPointer++;
-            }
-            maximumSum = Math.Max(maximumSum, currentWindowSum);
-        }
-
-        return maximumSum;
-    }
-
-    public int test2(int[] nums, int target)
+    public int highestSumFixedWindow(int[] nums, int k) 
     {
         int leftPointer = 0;
-        int currentWindowSum = 0;
-        int smallestSubstring = int.MaxValue;
+        int currentSum = 0;
+        int biggestSum = 0;
+        for (int rightPointer = 0; rightPointer < nums.Length; rightPointer++)
+        {
+            currentSum += nums[rightPointer];
 
-        for (int rightPointer = 0; rightPointer < nums.Length; rightPointer++) 
-        { 
-            currentWindowSum += nums[rightPointer];
-
-            while (currentWindowSum >= target) 
+            if (rightPointer - leftPointer + 1 >= k) 
             {
-                smallestSubstring = Math.Min(smallestSubstring, rightPointer - leftPointer + 1);
+                biggestSum = Math.Max(biggestSum, currentSum);
 
-                currentWindowSum -= nums[leftPointer];
+                currentSum -= nums[leftPointer];
                 leftPointer++;
             }
         }
-        
-        return smallestSubstring == int.MaxValue ? 0 : smallestSubstring;
+
+        return biggestSum;
     }
-
-
-
-    /*public int highestSumFixedWindow(int[] nums, int k) 
-    { 
-    
-    }*/
-
-
-
 }
