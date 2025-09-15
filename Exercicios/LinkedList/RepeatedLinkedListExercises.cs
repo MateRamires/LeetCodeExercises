@@ -31,4 +31,23 @@ public class RepeatedLinkedListExercises
 
         return dummy.next;
     }
+
+    //Ex 141: Linked List Cycle
+    public bool HasCycle(ListNode head)
+    {
+        if (head == null) return false;
+
+        ListNode slowPointer = head;
+        ListNode fastPointer = head.next;
+        while (fastPointer != null && fastPointer.next != null) 
+        {
+            if (slowPointer == fastPointer)
+                return true;
+
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next.next;
+        }
+
+        return false;
+    }
 }
