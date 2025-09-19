@@ -27,8 +27,8 @@ var res = ex.IsSameTree(tree, tree2);
 Console.WriteLine(res);*/
 
 
-var ex = new GroupAnagramsEx49();
+var ex = new RepeatedArrayHashExercises();
 
-var res = ex.GroupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]);
+var res = ex.ProductExceptSelf([1, 2, 3, 4]);
 
 
