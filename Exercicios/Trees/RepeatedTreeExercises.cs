@@ -23,15 +23,6 @@ public class RepeatedTreeExercises
         DFS(root.right);
     }
 
-    //Ex 104: Max Depth of Tree
-    public int MaxDepth(TreeNode root)
-    {
-        if (root == null) return 0;
-
-        return 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
-    }
-
-
     //Ex 543: Diameter of Binary Tree
     public int DiameterOfBinaryTree(TreeNode root)
     {
@@ -58,5 +49,13 @@ public class RepeatedTreeExercises
             return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
         else
             return false;
+    }
+
+    //Ex 104
+    public int MaxDepth(TreeNode root)
+    {
+        if (root == null) return 0;
+
+        return 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
     }
 }
