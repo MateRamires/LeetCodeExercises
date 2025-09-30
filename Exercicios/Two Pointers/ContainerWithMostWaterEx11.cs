@@ -1,25 +1,23 @@
-﻿namespace Exercicios.Two_Pointers;
+﻿using System.Globalization;
+
+namespace Exercicios.Two_Pointers;
 
 public class ContainerWithMostWaterEx11
 {
     public int MaxArea(int[] height)
     {
-        int res = 0;
-        int left = 0, right = height.Length - 1;
+        int leftPointer = 0, rightPointer = height.Length - 1;
+        int maxSize = 0;
+        while (leftPointer < rightPointer) 
+        {
+            int currentSize = Math.Min(height[leftPointer], height[rightPointer]) * (rightPointer - leftPointer);
+            maxSize = Math.Max(maxSize, currentSize);
 
-        while (left < right) 
-        { 
-            int currentArea = Math.Min(height[left], height[right]) * (right - left); //Para calcular a area tem que pegar o menor entre height left e height right
-
-            res = Math.Max(res, currentArea);
-
-            if (height[left] > height[right]) //Aqui fazemos o Two Pointers padrao, se o left for o maior, entao movemos o right para frente, e vice-versa
-                right--;
+            if (height[leftPointer] > height[rightPointer])
+                rightPointer--;
             else
-                left++;
-            
+                leftPointer++;
         }
-
-        return res;
+        return maxSize;
     }
 }
