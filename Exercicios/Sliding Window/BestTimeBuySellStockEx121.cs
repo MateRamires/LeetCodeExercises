@@ -1,22 +1,22 @@
 ﻿namespace Exercicios.Sliding_Window;
 
-public class BestTimeToBuySellStockEx121
+public class BestTimeBuySellStockEx121
 {
     public int MaxProfit(int[] prices)
     {
         int leftPointer = 0;
-        int maximumProfit = 0;
+        int maxProfit = 0;
         for (int rightPointer = 1; rightPointer < prices.Length; rightPointer++)
         {
-            if (prices[leftPointer] < prices[rightPointer])
+            if (prices[rightPointer] > prices[leftPointer])
             {
-                maximumProfit = Math.Max(maximumProfit, prices[rightPointer] - prices[leftPointer]);
+                maxProfit = Math.Max(maxProfit, prices[rightPointer] - prices[leftPointer]);
             }
-            else
+            else 
             {
                 leftPointer = rightPointer;
             }
         }
-        return maximumProfit;
+        return maxProfit;
     }
 }
