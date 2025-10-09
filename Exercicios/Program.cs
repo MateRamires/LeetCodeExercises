@@ -27,8 +27,8 @@ var res = ex.IsSameTree(tree, tree2);
 Console.WriteLine(res);*/
 
 
-var ex = new ArrayHashEx2264();
+var ex = new ProductArrayExceptSelfPrefixSumEx238();
 
-var res = ex.LargestGoodInteger("6777133339");
+var res = ex.ProductExceptSelf([1, 2, 3, 4]);
 
 

@@ -2,29 +2,24 @@
 
 public class ProductArrayExceptSelfPrefixSumEx238
 {
-    public int[] ProductExceptSelf(int[] nums) 
+    public int[] ProductExceptSelf(int[] nums)
     {
-        int[] answer = new int[nums.Length];
-        int[] prefix = new int[nums.Length];
-        int[] suffix = new int[nums.Length];
+        int n = nums.Length;
+        int[] prefixSum = new int[n]; //Produto de todos os numeros anteriores ao numero atual
+        int[] suffixSum = new int[n]; //Produto de todos os numeros posteriores ao numero atual
+        int[] answer = new int[n]; 
 
-        prefix[0] = 1;
-        for (int i = 1; i < nums.Length; i++) 
-        {
-            prefix[i] = prefix[i - 1] * nums[i - 1];
-        }
+        prefixSum[0] = 1;
+        for (int i = 1; i < n; i++)
+            prefixSum[i] = prefixSum[i - 1] * nums[i - 1];
 
-        suffix[suffix.Length - 1] = 1;
-        for (int i = suffix.Length - 2; i >= 0; i--) 
-        {
-            suffix[i] = suffix[i + 1] * nums[i + 1];    
-        }
+        suffixSum[n - 1] = 1;
+        for (int i = n - 2; i >= 0; i--)
+            suffixSum[i] = suffixSum[i + 1] * nums[i + 1];
 
-        for (int i = 0; i < answer.Length; i++) 
-        {
-            answer[i] = prefix[i] * suffix[i];
-        }
-
+        for (int i = 0; i < n; i++)
+            answer[i] = prefixSum[i] * suffixSum[i];
+            
         return answer;
     }
 }
