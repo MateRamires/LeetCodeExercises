@@ -6,18 +6,17 @@ public class LongestSubWithoutRepeatingCharEx3
     {
         int leftPointer = 0;
         int longestSubstring = 0;
-        var hashSet = new HashSet<char>();
+        var hashSetChars = new HashSet<char>();
         for (int rightPointer = 0; rightPointer < s.Length; rightPointer++)
         {
-            while (hashSet.Contains(s[rightPointer])) 
-            {
-                hashSet.Remove(s[leftPointer]);
+            while (hashSetChars.Contains(s[rightPointer])) 
+            { 
+                hashSetChars.Remove(s[leftPointer]);
                 leftPointer++;
             }
 
             longestSubstring = Math.Max(longestSubstring, rightPointer - leftPointer + 1);
-
-            hashSet.Add(s[rightPointer]);
+            hashSetChars.Add(s[rightPointer]);
         }
 
         return longestSubstring;
