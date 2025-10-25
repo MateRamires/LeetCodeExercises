@@ -43,9 +43,6 @@ public class TreeBasicExercises
         if (root == null) return false;
         if (root.val == value) return true;
 
-        checkValueExists(root.left, value);
-        checkValueExists(root.right, value);
-
         return checkValueExists(root.left, value) || checkValueExists(root.right, value);
     }
 
