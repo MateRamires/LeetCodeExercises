@@ -1,4 +1,6 @@
-﻿namespace Exercicios.Graphs;
+﻿using Exercicios.Graphs.Helpers;
+
+namespace Exercicios.Graphs;
 public class GraphExercise133
 {
     public Node CloneGraph(Node node) //Um node tem um valor e uma lista de nodes neighbors, ou seja, cada node tem um valor a si mesmo e uma quantidade ilimitada de possiveis vizinhos, que tambem sao nodes.

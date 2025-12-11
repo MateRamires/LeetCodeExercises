@@ -1,4 +1,4 @@
-﻿namespace Exercicios.Graphs;
+﻿namespace Exercicios.Graphs.Helpers;
 
 public class Node
 {
