@@ -39,19 +39,24 @@ public class GraphTraversals
 
         Console.WriteLine("BFS a partir do ponto " + startingPoint + ":");
 
+        Console.WriteLine(startingPoint + " ");
+
         while (queue.Count > 0) 
         { 
             int currentNode = queue.Dequeue();
-            Console.WriteLine(currentNode + " ");
-
+            
             foreach (int neighbor in graph[currentNode]) 
             {
                 if (!visited[neighbor]) 
                 { 
                     visited[neighbor] = true;
                     queue.Enqueue(neighbor);
+
+                    Console.Write(neighbor + " ");
                 }
             }
+
+            Console.WriteLine();
         }
 
         Console.WriteLine();

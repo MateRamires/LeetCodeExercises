@@ -1,5 +1,6 @@
 ﻿using Exercicios.Array___Hash;
 using Exercicios.Binary_Search;
+using Exercicios.Graphs;
 using Exercicios.Graphs.Helpers;
 using Exercicios.LinkedList;
 using Exercicios.LinkedList.Utility;
@@ -31,18 +32,15 @@ Console.WriteLine(res);*/
 /*Grafos*/
 int numberOfNodes = 5;
 
-//Ligacao entre os nodes (vizinhos)
 int[][] edges = new int[][]
 {
-    new[] { 0,1 }, //Node 0 tem como vizinho node 1.
-    new[] { 0,2 },
-    new[] { 1,3 },
-    new[] { 1,4 },
+    new[] { 0,1 }, 
+    new[] { 1,2 },
+    new[] { 3,4 }
 };
 
-List<int>[] graph = GraphHelpers.BuildUndirected(numberOfNodes, edges);
+var graphsEx = new GraphTrainExercises();
 
-Console.WriteLine("Lista de vizinhos: ");
-GraphHelpers.Print(graph);
-Console.WriteLine();
+graphsEx.CountComponents(numberOfNodes, edges);
+graphsEx.CountComponents(numberOfNodes, edges);
 
