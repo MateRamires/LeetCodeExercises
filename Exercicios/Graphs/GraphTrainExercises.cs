@@ -1,4 +1,5 @@
 ﻿using Exercicios.Graphs.Helpers;
+using System.ComponentModel;
 
 namespace Exercicios.Graphs;
 
@@ -7,9 +8,8 @@ public class GraphTrainExercises
     public int CountComponents(int n, int[][] edges) 
     {
         var graph = GraphHelpers.BuildUndirected(n, edges);
-
-        bool[] visited = new bool[n];
-        int count = 0;
+        var visited = new bool[n];
+        var count = 0;
 
         for (int i = 0; i < n; i++) 
         {
@@ -18,7 +18,7 @@ public class GraphTrainExercises
                 BFS(graph, i, visited);
                 count++;
             }
-        } 
+        }
 
         return count;
     }
@@ -27,7 +27,7 @@ public class GraphTrainExercises
     {
         visitedNodes[currentNode] = true;
 
-        foreach (int neighbor in graph[currentNode]) 
+        foreach (var neighbor in graph[currentNode]) 
         {
             if (!visitedNodes[neighbor]) 
             {
@@ -38,20 +38,19 @@ public class GraphTrainExercises
 
     private void BFS(List<int>[] graph, int node, bool[] visitedNodes) 
     {
+        var queue = new Queue<int>();
         visitedNodes[node] = true;
-        Queue<int> q = new Queue<int>();
-        q.Enqueue(node);
 
-        while (q.Count > 0) 
-        { 
-            var currentNode = q.Dequeue();
+        queue.Enqueue(node);
 
-            foreach (var neighbor in graph[currentNode]) 
+        while (queue.Count > 0) 
+        {
+            foreach (var neighbor in graph[node]) 
             {
                 if (!visitedNodes[neighbor]) 
-                {
+                { 
+                    queue.Enqueue(neighbor);
                     visitedNodes[neighbor] = true;
-                    q.Enqueue(neighbor);
                 }
             }
         }
