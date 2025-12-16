@@ -8,14 +8,14 @@ public class GraphTrainExercises
     public int CountComponents(int n, int[][] edges) 
     {
         var graph = GraphHelpers.BuildUndirected(n, edges);
-        var visited = new bool[n];
+        bool[] visited = new bool[n];
         var count = 0;
 
         for (int i = 0; i < n; i++) 
         {
             if (!visited[i]) 
             {
-                BFS(graph, i, visited);
+                DFS(graph, i, visited);
                 count++;
             }
         }
@@ -29,7 +29,7 @@ public class GraphTrainExercises
 
         foreach (var neighbor in graph[currentNode]) 
         {
-            if (!visitedNodes[neighbor]) 
+            if (!visitedNodes[neighbor])
             {
                 DFS(graph, neighbor, visitedNodes);
             }
@@ -39,18 +39,19 @@ public class GraphTrainExercises
     private void BFS(List<int>[] graph, int node, bool[] visitedNodes) 
     {
         var queue = new Queue<int>();
-        visitedNodes[node] = true;
-
         queue.Enqueue(node);
+
 
         while (queue.Count > 0) 
         {
-            foreach (var neighbor in graph[node]) 
+            var currentNode = queue.Dequeue();
+            visitedNodes[currentNode] = true;
+
+            foreach (var neighbor in graph[currentNode]) 
             {
                 if (!visitedNodes[neighbor]) 
-                { 
+                {
                     queue.Enqueue(neighbor);
-                    visitedNodes[neighbor] = true;
                 }
             }
         }
