@@ -1,64 +1,54 @@
-﻿namespace Exercicios.Graphs;
+﻿using Exercicios.Graphs.Helpers;
+
+namespace Exercicios.Graphs;
 
 public class GraphTraversals
 {
-    public void DfsTraversal(List<int>[] graph, int startingPoint) 
-    { 
-        int numberOfNodes = graph.Length;
-        var visited = new bool[numberOfNodes];
+    public List<int> traversal(int n, int[][] edges, int startingPoint) 
+    {
+        var graph = GraphHelpers.BuildUndirected(n, edges);
+        var visited = new bool[n];
+        var answer = new List<int>();
 
-        Console.WriteLine("DFS a partir do ponto " + startingPoint + ":");
-        DFS(graph, startingPoint, visited);
-        Console.WriteLine();
+
+        DFSTraversal(graph, startingPoint, visited, answer);
+        BFSTraversal(graph, startingPoint, visited, answer);
+
+        return answer;
     }
 
-    public void DFS(List<int>[] graph, int node, bool[] visited) 
+    public void DFSTraversal(List<int>[] graph, int node, bool[] visited, List<int> answer) 
     {
-        if (visited[node]) return;
-
         visited[node] = true;
-        Console.WriteLine(node + " ");
+        answer.Add(node);
 
-        foreach (int neighbor in graph[node]) 
+        foreach (var neighbor in graph[node]) 
         {
             if (!visited[neighbor]) 
-            { 
-                DFS(graph, neighbor, visited);
+            {
+                DFSTraversal(graph, neighbor, visited, answer);
             }
         }
     }
 
-    public void BFSTraversal(List<int>[] graph, int startingPoint) 
-    { 
-        int numberOfNodes = graph.Length;
-        var visited = new bool[numberOfNodes];
+    public void BFSTraversal(List<int>[] graph, int startingPoint, bool[] visited, List<int> answer)
+    {
         var queue = new Queue<int>();
-
-        visited[startingPoint] = true;
         queue.Enqueue(startingPoint);
-
-        Console.WriteLine("BFS a partir do ponto " + startingPoint + ":");
-
-        Console.WriteLine(startingPoint + " ");
+        visited[startingPoint] = true;
 
         while (queue.Count > 0) 
         { 
-            int currentNode = queue.Dequeue();
-            
-            foreach (int neighbor in graph[currentNode]) 
+            var currentNode = queue.Dequeue();
+            answer.Add(currentNode);
+            foreach (var neighbor in graph[currentNode])
             {
                 if (!visited[neighbor]) 
                 { 
-                    visited[neighbor] = true;
                     queue.Enqueue(neighbor);
-
-                    Console.Write(neighbor + " ");
+                    visited[neighbor] = true;
                 }
             }
-
-            Console.WriteLine();
         }
-
-        Console.WriteLine();
     }
 }

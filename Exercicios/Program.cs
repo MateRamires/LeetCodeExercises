@@ -30,13 +30,11 @@ Console.WriteLine(res);*/
 
 
 /*Grafos*/
-int numberOfNodes = 5;
+int numberOfNodes = 6;
 
 int[][] edges = new int[][]
 {
-    new[] { 0,1 }, 
-    new[] { 1,2 },
-    new[] { 3,4 }
+    [0,1],[0,2],[1,3],[1,4],[2,5]
 };
 
 var graphsEx = new GraphTrainExercises();
